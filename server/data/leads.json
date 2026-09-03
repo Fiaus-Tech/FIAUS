@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "lead_1788471237599",
+    "name": "Fahad Al-Mansour",
+    "email": "fahad@almansour.sa",
+    "whatsapp": "+966511269264",
+    "country": "Saudi Arabia",
+    "company": "Al-Mansour Enterprise",
+    "serviceNeeded": "AI Automation & Custom Agents",
+    "budget": "$5,000 - $10,000",
+    "projectDetails": "We need custom AI agent integrations to automate customer onboarding and inquiries.",
+    "preferredContact": "WhatsApp",
+    "status": "New",
+    "internalNotes": [],
+    "createdAt": "2026-09-03T21:33:57.599Z"
+  },
+  {
+    "_id": "lead_1788471225059",
+    "name": "Fahad Al-Mansour",
+    "email": "fahad@almansour.sa",
+    "whatsapp": "+966511269264",
+    "country": "Saudi Arabia",
+    "company": "Al-Mansour Enterprise",
+    "serviceNeeded": "AI Automation & Custom Agents",
+    "budget": "$5,000 - $10,000",
+    "projectDetails": "We need custom AI agent integrations to automate customer onboarding and inquiries.",
+    "preferredContact": "WhatsApp",
+    "status": "New",
+    "internalNotes": [],
+    "createdAt": "2026-09-03T21:33:45.059Z"
+  },
+  {
+    "_id": "lead_1788471217386",
+    "name": "Fahad Al-Mansour",
+    "email": "fahad@almansour.sa",
+    "whatsapp": "+966511269264",
+    "country": "Saudi Arabia",
+    "company": "Al-Mansour Enterprise",
+    "serviceNeeded": "AI Automation & Custom Agents",
+    "budget": "$5,000 - $10,000",
+    "projectDetails": "We need custom AI agent integrations to automate customer onboarding and inquiries.",
+    "preferredContact": "WhatsApp",
+    "status": "New",
+    "internalNotes": [],
+    "createdAt": "2026-09-03T21:33:37.386Z"
+  }
+]

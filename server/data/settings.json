@@ -1,0 +1,40 @@
+{
+  "companyName": "FIAUS Tech",
+  "descriptor": "Digital & AI Agency",
+  "descriptorAr": "وكالة رقمية وحلول الذكاء الاصطناعي",
+  "tagline": "Innovate. Automate. Grow.",
+  "taglineAr": "ابتكر. أتمت. انمو.",
+  "email": "fiaustech@hotmail.com",
+  "phone": "+966 51 126 9264",
+  "whatsapp": "+966511269264",
+  "telegram": "https://t.me/fiaustech",
+  "websiteUrl": "https://fiaus.tech",
+  "socialLinks": {
+    "facebook": "https://facebook.com/fiaustech",
+    "instagram": "https://instagram.com/fiaustech",
+    "x": "https://x.com/fiaus_tech",
+    "linkedin": "https://www.linkedin.com/in/fiaus-tech",
+    "github": "https://github.com/Fiaus-Tech",
+    "youtube": "https://youtube.com/@FiausTech",
+    "telegram": "https://t.me/fiaustech",
+    "tiktok": "https://tiktok.com/@fiaustech",
+    "snapchat": "https://snapchat.com/add/fiaustech"
+  },
+  "regionsServed": [
+    "Bangladesh",
+    "Saudi Arabia",
+    "Global"
+  ],
+  "analytics": {
+    "googleAnalyticsId": "",
+    "googleSearchConsoleTag": "",
+    "metaPixelId": "",
+    "microsoftClarityId": ""
+  },
+  "seo": {
+    "defaultTitle": "FIAUS Tech | Digital & AI Agency — Innovate. Automate. Grow.",
+    "defaultTitleAr": "فياوس تك | وكالة التحول الرقمي والذكاء الاصطناعي",
+    "defaultMetaDesc": "FIAUS Tech is a premier international Digital & AI Agency engineering high-impact web applications, intelligent AI automation, and scalable cloud solutions.",
+    "defaultMetaDescAr": "فياوس تك هي وكالة رقمية رائدة متخصصة في هندسة الويب وتطبيقات الذكاء الاصطناعي والأتمتة الذكية لخدمة الشركات في المملكة العربية السعودية وبنغلاديش وحول العالم."
+  }
+}

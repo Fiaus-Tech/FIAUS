@@ -1,0 +1,328 @@
+[
+  {
+    "_id": "proj_1",
+    "title": "ACC EST",
+    "titleAr": "مؤسسة إيه سي سي",
+    "slug": "acc-est",
+    "category": "Web Engineering",
+    "categoryAr": "هندسة الويب والمؤسسات",
+    "projectType": "Enterprise Corporate Web Platform",
+    "shortDescription": "High-performance modern corporate portal with interactive project showcases, client portal integration, and bilingual presentation.",
+    "shortDescriptionAr": "منصة مؤسسية حديثة وعالية الأداء مع معارض مشاريع تفاعلية وبوابة عملاء متكاملة.",
+    "fullDescription": "ACC EST is an enterprise-grade digital platform engineered for high-visibility corporate presentation and client engagement. Built with contemporary design aesthetics and robust component architecture, it presents corporate capabilities, project portfolios, and headquarters operations seamlessly across all devices.",
+    "fullDescriptionAr": "منصة رقمية متطورة على مستوى المؤسسات صُممت لتقديم رؤية واضحة للقدرات المؤسسية وحافظة المشاريع ومقر العمليات بسلاسة عبر مختلف الشاشات.",
+    "technologies": [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Node.js"
+    ],
+    "features": [
+      "Dynamic Project Showcase",
+      "Bilingual Architecture",
+      "Interactive Corporate Timeline",
+      "Client Engagement Portal",
+      "Optimized Core Web Vitals"
+    ],
+    "featuresAr": [
+      "عرض تفاعلي للمشاريع",
+      "بنية ثنائية اللغة",
+      "جدول زمني تفاعلي",
+      "بوابة تفاعل العملاء",
+      "أداء وسرعة قياسية"
+    ],
+    "challenge": "Deliver an executive-level web platform that effectively communicates company strength, scale, and operational capabilities to regional and international partners.",
+    "solution": "Designed a sophisticated, modern UI with smooth micro-interactions, responsive typography, and an intuitive content hierarchy.",
+    "coverImage": "/assets/projects/p1/main.png",
+    "screenshots": [
+      {
+        "title": "Corporate Overview",
+        "url": "/assets/projects/p1/main.png"
+      },
+      {
+        "title": "About & Vision",
+        "url": "/assets/projects/p1/about.png"
+      },
+      {
+        "title": "Client Capabilities",
+        "url": "/assets/projects/p1/client.png"
+      },
+      {
+        "title": "Headquarters & Facilities",
+        "url": "/assets/projects/p1/hq.png"
+      },
+      {
+        "title": "Projects Portfolio",
+        "url": "/assets/projects/p1/project.png"
+      }
+    ],
+    "githubUrl": "https://github.com/fahad1420/ACC-EST",
+    "liveUrl": "https://acc-est.vercel.app/",
+    "featured": true,
+    "displayOrder": 1,
+    "status": "published",
+    "createdAt": "2026-09-03T21:31:57.711Z"
+  },
+  {
+    "_id": "proj_2",
+    "title": "Rabiora E-Commerce",
+    "titleAr": "متجر رابيورا الإلكتروني",
+    "slug": "rabiora-ecommerce",
+    "category": "E-Commerce & Retail",
+    "categoryAr": "التجارة الإلكترونية والتجزئة",
+    "projectType": "Full-Stack E-Commerce & Subscription Architecture",
+    "shortDescription": "Scalable e-commerce ecosystem featuring dynamic product catalogs, customer subscription workflows, and full backend management.",
+    "shortDescriptionAr": "منظومة تجارة إلكترونية متكاملة وقابلة للتوسع تتميز بكتالوج منتجات ديناميكي وإدارة الاشتراكات ولوحة تحكم شاملة.",
+    "fullDescription": "Rabiora is a next-generation e-commerce web platform engineered for conversion and fluid consumer browsing. Incorporating full light/dark theming, automated subscriber management, lightning-fast cart interactions, and administrative dashboards, Rabiora provides a robust foundation for modern digital retail.",
+    "fullDescriptionAr": "منصة تجارة إلكترونية من الجيل القادم تم تصميمها لتحقيق أعلى معدلات التحويل مع دعم كامل للوضع الليلي والنهاري وإدارة المشتركين ولوحة تحكم متطورة.",
+    "technologies": [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "REST API"
+    ],
+    "features": [
+      "Multi-Theme Support (Light & Dark)",
+      "Customer Subscriber Workflow",
+      "Administrative Product Management",
+      "Responsive Checkout Flow",
+      "Real-Time Inventory Updates"
+    ],
+    "featuresAr": [
+      "دعم الوضعين الفاتح والداكن",
+      "إدارة المشتركين والنشرات",
+      "لوحة إدارة المنتجات",
+      "تجربة دفع سلسة ومتجاوبة",
+      "تحديثات المخزون الفورية"
+    ],
+    "challenge": "Build a lightning-fast, visually compelling digital shopping experience with seamless theme transitions and end-to-end subscriber workflows.",
+    "solution": "Engineered a modular React frontend powered by an optimized Express/MongoDB backend with responsive state management.",
+    "coverImage": "/assets/projects/p2/main.png",
+    "screenshots": [
+      {
+        "title": "Storefront Experience",
+        "url": "/assets/projects/p2/main.png"
+      },
+      {
+        "title": "Administrative Backend",
+        "url": "/assets/projects/p2/backend.png"
+      },
+      {
+        "title": "Home & Featured Catalog",
+        "url": "/assets/projects/p2/home.png"
+      },
+      {
+        "title": "Light Mode Interface",
+        "url": "/assets/projects/p2/light-mode.png"
+      },
+      {
+        "title": "Subscribers & Audience Manager",
+        "url": "/assets/projects/p2/subscribers.png"
+      }
+    ],
+    "githubUrl": "https://github.com/fahad1420/rabiora-ecommerce",
+    "liveUrl": "https://rabiora-ecommerce.vercel.app/",
+    "featured": true,
+    "displayOrder": 2,
+    "status": "published",
+    "createdAt": "2026-09-03T21:31:57.712Z"
+  },
+  {
+    "_id": "proj_3",
+    "title": "TECH-GURD",
+    "titleAr": "تيك جارد",
+    "slug": "tech-gurd",
+    "category": "Cybersecurity & Tools",
+    "categoryAr": "الأمن السيبراني وأدوات الحماية",
+    "projectType": "Security & Browser Ad-Blocking Platform",
+    "shortDescription": "Real-time web privacy and ad-blocking suite with live threat telemetry, browser extension distribution, and customizable protection tiers.",
+    "shortDescriptionAr": "منصة حماية الخصوصية وحجب الإعلانات المزعجة في الوقت الفعلي مع لوحة تحكم بالتهديدات وتوزيع ملحق المتصفح.",
+    "fullDescription": "TECH-GURD is a cutting-edge privacy and security platform designed to protect users from intrusive trackers, malicious ad injections, and privacy leaks. Featuring live telemetry metrics, an intuitive browser extension installation flow, and deep security configuration settings, TECH-GURD demonstrates advanced tool engineering.",
+    "fullDescriptionAr": "منصة أمنية متقدمة لحماية المستخدمين من أدوات التتبع والإعلانات الضارة مع إحصاءات حية وإعدادات حماية متقدمة.",
+    "technologies": [
+      "TypeScript",
+      "React",
+      "Browser Extension APIs",
+      "WebSockets",
+      "Tailwind CSS"
+    ],
+    "features": [
+      "Live Telemetry & Threat Blocking",
+      "Browser Extension Distribution Hub",
+      "Customizable Filter Lists",
+      "Security Dashboard Metrics",
+      "Low Latency Rules Engine"
+    ],
+    "featuresAr": [
+      "حجب التهديدات والإعلانات في الوقت الحقيقي",
+      "مركز توزيع وتثبيت ملحق المتصفح",
+      "قوائم تصفية مخصصة",
+      "مؤشرات الأمان ولوحة التحكم",
+      "محرك فحص سريع ومنخفض الاستهلاك"
+    ],
+    "challenge": "Provide users with a seamless bridge between a high-converting web presence and browser extension installation with live security metrics.",
+    "solution": "Designed an ultra-clean tech interface highlighting protection statistics, intuitive step-by-step setup, and transparent security controls.",
+    "coverImage": "/assets/projects/p3/main.png",
+    "screenshots": [
+      {
+        "title": "Security Overview",
+        "url": "/assets/projects/p3/main.png"
+      },
+      {
+        "title": "Live Telemetry Dashboard",
+        "url": "/assets/projects/p3/dashboard.png"
+      },
+      {
+        "title": "Extension Installation Flow",
+        "url": "/assets/projects/p3/install-extension.png"
+      },
+      {
+        "title": "Live Ad Blocking In Action",
+        "url": "/assets/projects/p3/live-ads-blocking.png"
+      },
+      {
+        "title": "Protection Settings",
+        "url": "/assets/projects/p3/settings.png"
+      }
+    ],
+    "githubUrl": "https://github.com/fahad1420/TECH-GURD",
+    "liveUrl": "https://tech-gurd.vercel.app/",
+    "featured": true,
+    "displayOrder": 3,
+    "status": "published",
+    "createdAt": "2026-09-03T21:31:57.712Z"
+  },
+  {
+    "_id": "proj_4",
+    "title": "Current Ache BD",
+    "titleAr": "كرنت آشي بنغلاديش",
+    "slug": "current-ache-bd",
+    "category": "Full-Stack & Cloud",
+    "categoryAr": "التطبيقات السحابية وأنظمة البيانات",
+    "projectType": "National Power & Energy Telemetry Platform",
+    "shortDescription": "Real-time public utility monitoring platform aggregating national power grid metrics, area-by-area load shedding history, and live stats.",
+    "shortDescriptionAr": "منصة وطنية لمتابعة شبكة الكهرباء والطاقة في الوقت الفعلي مع تقارير وإحصاءات تاريخية ومناطقية مفصلة.",
+    "fullDescription": "Current Ache BD is a high-availability telemetry portal serving real-time energy tracking across all regions of Bangladesh. With live national capacity analytics, area-specific power status tracking, and historical outage logs, the platform processes heavy data updates while remaining ultra-fast and accessible.",
+    "fullDescriptionAr": "بوابة بيانات عامة عالية التوافر لتتبع حالة شبكة الكهرباء ومحطات الطاقة في مختلف مناطق بنغلاديش بدقة وسرعة فائقة.",
+    "technologies": [
+      "React",
+      "Vite",
+      "Node.js",
+      "Chart.js / Data Viz",
+      "Tailwind CSS",
+      "API Integration"
+    ],
+    "features": [
+      "National Power Capacity Analytics",
+      "All-Area Real-Time Status Grid",
+      "Historical Outage & Restoration Logs",
+      "Bilingual Public Interface",
+      "High-Concurrence Caching"
+    ],
+    "featuresAr": [
+      "تحليلات سعة شبكة الطاقة الوطنية",
+      "شبكة متابعة حالة جميع المناطق الحية",
+      "سجلات انقطاع واستعادة التيار التاريخية",
+      "واجهة مستخدم ثنائية اللغة",
+      "نظام تخزين مؤقت للتعامل مع آلاف الزوار"
+    ],
+    "challenge": "Process and render high-frequency real-time public telemetry data with zero UI lag for thousands of concurrent users.",
+    "solution": "Implemented lightweight data models, efficient chart visualizations, and regional search filters for instant feedback.",
+    "coverImage": "/assets/projects/p4/main.png",
+    "screenshots": [
+      {
+        "title": "National Grid Overview",
+        "url": "/assets/projects/p4/main.png"
+      },
+      {
+        "title": "National Power Statistics",
+        "url": "/assets/projects/p4/national-stats.png"
+      },
+      {
+        "title": "All Area Real-Time Status",
+        "url": "/assets/projects/p4/all-area.png"
+      },
+      {
+        "title": "Historical Power Outage Logs",
+        "url": "/assets/projects/p4/power-history.png"
+      },
+      {
+        "title": "About & Methodology",
+        "url": "/assets/projects/p4/about.png"
+      }
+    ],
+    "githubUrl": "https://github.com/fahad1420/Current-Ache-",
+    "liveUrl": "https://current-ache-iota.vercel.app/",
+    "featured": true,
+    "displayOrder": 4,
+    "status": "published",
+    "createdAt": "2026-09-03T21:31:57.712Z"
+  },
+  {
+    "_id": "proj_5",
+    "title": "AMA Specialty Coffee",
+    "titleAr": "قهوة أما المختصة",
+    "slug": "ama-specialty-coffee",
+    "category": "Brand Experience & Hospitality",
+    "categoryAr": "الهوية والتجارب الرقمية الفاخرة",
+    "projectType": "Artisanal Brand Web Experience",
+    "shortDescription": "Luxury digital brand experience for an artisanal specialty coffee roaster, presenting handcrafted menus, origin storytelling, and gallery.",
+    "shortDescriptionAr": "تجربة رقمية فاخرة لعلامة تجارية متخصصة في القهوة المختصة تستعرض القائمة المميزة وقصة المنشأ والمعرض الفني.",
+    "fullDescription": "AMA Specialty Coffee combines artisanal aesthetics with refined web craftsmanship. Designed to evoke luxury, craftsmanship, and community, the platform features curated roast menus, high-resolution aesthetic galleries, and brand origin narratives.",
+    "fullDescriptionAr": "تجمع منصة قهوة أما المختصة بين الجماليات الحرفية والهندسة الرقمية الراقية، لتعكس الفخامة والأصالة من خلال قوائم تفاعلية ومعارض بصرية خلابة.",
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Responsive UI Design"
+    ],
+    "features": [
+      "Interactive Specialty Coffee Menu",
+      "High-Resolution Visual Gallery",
+      "Artisanal Origin Storytelling",
+      "Why Choose Us Value Pillars",
+      "Fluid Mobile Experience"
+    ],
+    "featuresAr": [
+      "قائمة تفاعلية للمشروبات والقهوة المختصة",
+      "معرض صور عالي الدقة",
+      "سرد قصة حبوب القهوة والمنشأ",
+      "ركائز القيمة والجودة",
+      "تصميم متجاوب بالكامل مع الجوال"
+    ],
+    "challenge": "Translate an upscale sensory hospitality brand into a refined, immersive digital experience.",
+    "solution": "Constructed an editorial aesthetic with warm minimalist typography, smooth micro-interactions, and visual storytelling.",
+    "coverImage": "/assets/projects/p5/main.png",
+    "screenshots": [
+      {
+        "title": "Artisanal Brand Showcase",
+        "url": "/assets/projects/p5/main.png"
+      },
+      {
+        "title": "Specialty Coffee Menu",
+        "url": "/assets/projects/p5/menu.png"
+      },
+      {
+        "title": "Atmospheric Visual Gallery",
+        "url": "/assets/projects/p5/gallery.png"
+      },
+      {
+        "title": "Brand Heritage & About",
+        "url": "/assets/projects/p5/about.png"
+      },
+      {
+        "title": "Why Choose AMA Specialty Coffee",
+        "url": "/assets/projects/p5/why-choose-us.png"
+      }
+    ],
+    "githubUrl": "https://github.com/fahad1420/ama-specialty-coffee",
+    "liveUrl": "",
+    "featured": true,
+    "displayOrder": 5,
+    "status": "published",
+    "createdAt": "2026-09-03T21:31:57.712Z"
+  }
+]

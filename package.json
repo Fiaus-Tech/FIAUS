@@ -1,0 +1,16 @@
+{
+  "name": "fiaus-tech-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "start": "node server/src/server.js",
+    "build": "npm run build --prefix client",
+    "install-all": "npm install && npm install --prefix server && npm install --prefix client",
+    "seed": "node server/src/utils/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
+
