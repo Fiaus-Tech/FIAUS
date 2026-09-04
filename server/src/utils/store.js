@@ -484,7 +484,58 @@ const initialSettings = {
   }
 };
 
+export const initialTeam = [
+
+  {
+    _id: 'team_1',
+    name: 'Fahad Hossain',
+    nameAr: 'فهد حسين',
+    position: 'Founder & CEO',
+    positionAr: 'المؤسس والرئيس التنفيذي',
+    bio: 'Professional Full-Stack Web Developer and Technical Architect specializing in modern React, Node.js ecosystems, cloud solutions, and structured digital product delivery.',
+    bioAr: 'مطور ويب متكامل ومهندس معماري تقني متخصص في منظومة React و Node.js والحلول السحابية وتطوير المنتجات الرقمية الحديثة.',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520752/FIAUS/team/founder_fahad_hossain.jpg',
+    socialLinks: {
+      portfolio: 'https://fahaddev0.vercel.app/',
+      github: 'https://github.com/fahad1420'
+    },
+    displayOrder: 1,
+    status: 'active'
+  },
+  {
+    _id: 'team_2',
+    name: 'Toufiq Hasan Kiron',
+    nameAr: 'توفيق حسن كيرون',
+    position: 'Co-Founder',
+    positionAr: 'الشريك المؤسس',
+    bio: 'Frontend-focused Full-Stack Developer specializing in modern JavaScript, TypeScript, React, Next.js web applications, performance engineering, and scalable interface design.',
+    bioAr: 'مطور متكامل متخصص في هندسة الواجهات الأمامية الحديثة باستخدام JavaScript و TypeScript و React و Next.js وتحسين الأداء الرقمي.',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520753/FIAUS/team/cofounder_toufiq_hasan_kiron.jpg',
+    socialLinks: {
+      portfolio: 'https://kiron.dev'
+    },
+    displayOrder: 2,
+    status: 'active'
+  },
+  {
+    _id: 'team_3',
+    name: 'Nahid Hassan Bulbul',
+    nameAr: 'ناهد حسن بلبل',
+    position: 'Director',
+    positionAr: 'المدير',
+    bio: 'Professional Full-Stack Developer focused on robust backend architectures, application engineering, system scalability, and client project execution.',
+    bioAr: 'مطور متكامل متخصص في البنى التحتية الخلفية وهندسة التطبيقات وقابلية توسع الأنظمة وتنفيذ مشاريع العملاء.',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520776/FIAUS/team/director_nahid_hassan_bulbul.png',
+    socialLinks: {
+      portfolio: ''
+    },
+    displayOrder: 3,
+    status: 'active'
+  }
+];
+
 class JSONStore {
+
   constructor() {
     this.projectsFile = path.join(dataDir, 'projects.json');
     this.leadsFile = path.join(dataDir, 'leads.json');
@@ -525,7 +576,7 @@ class JSONStore {
     this.read(this.faqsFile, initialFAQs);
     this.read(this.messagesFile, []);
     this.read(this.settingsFile, initialSettings);
-    this.read(this.teamFile, []);
+    this.read(this.teamFile, initialTeam);
     this.read(this.testimonialsFile, []);
     this.read(this.blogsFile, initialBlogPosts);
   }
@@ -573,9 +624,10 @@ class JSONStore {
   }
 
   getTeam() {
-    const list = this.read(this.teamFile, []);
+    const list = this.read(this.teamFile, initialTeam);
     return list.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
   }
+
 
   saveTeam(team) {
     this.write(this.teamFile, team);
