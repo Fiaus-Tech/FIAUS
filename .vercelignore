@@ -16,3 +16,4 @@ server/.env
 client/.env
 server/uploads
 data/*.json
+
