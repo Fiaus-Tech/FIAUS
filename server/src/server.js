@@ -57,11 +57,16 @@ app.use(express.json({ limit: '15mb' }));
 app.use(express.urlencoded({ extended: true, limit: '15mb' }));
 
 // Static Asset Directories
-const uploadsPath = path.resolve('server/uploads');
-if (!fs.existsSync(uploadsPath)) {
-  fs.mkdirSync(uploadsPath, { recursive: true });
+const uploadsPath = process.env.VERCEL ? '/tmp/uploads' : path.resolve('server/uploads');
+try {
+  if (!fs.existsSync(uploadsPath)) {
+    fs.mkdirSync(uploadsPath, { recursive: true });
+  }
+} catch (e) {
+  // Ignore filesystem errors in read-only environments
 }
 app.use('/uploads', express.static(uploadsPath));
+
 
 // Ensure Database Connection for every request (Serverless & Stateful)
 app.use(async (req, res, next) => {
