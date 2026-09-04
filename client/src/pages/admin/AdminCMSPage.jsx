@@ -15,7 +15,8 @@ import {
   fetchBlogPosts,
   createBlogPost,
   updateBlogPost,
-  deleteBlogPost
+  deleteBlogPost,
+  uploadFile
 } from '../../services/api';
 import {
   HelpCircle,
@@ -31,7 +32,10 @@ import {
   EyeOff,
   Sparkles,
   ArrowUp,
-  ArrowDown
+  ArrowDown,
+  Upload,
+  Image,
+  ExternalLink
 } from 'lucide-react';
 
 export default function AdminCMSPage() {
@@ -47,6 +51,7 @@ export default function AdminCMSPage() {
   const [team, setTeam] = useState([]);
   const [editingMember, setEditingMember] = useState(null);
   const [isNewMember, setIsNewMember] = useState(false);
+  const [uploadingPhoto, setUploadingPhoto] = useState(false);
 
   // States for Testimonials
   const [testimonials, setTestimonials] = useState([]);
@@ -114,6 +119,22 @@ export default function AdminCMSPage() {
   };
 
   // --- Team Handlers ---
+  const handleTeamPhotoUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploadingPhoto(true);
+    try {
+      const res = await uploadFile(file, 'team');
+      if (res.data?.success && res.data?.data?.url) {
+        setEditingMember((prev) => ({ ...prev, photo: res.data.data.url }));
+      }
+    } catch (err) {
+      alert('Photo upload failed: ' + err.message);
+    } finally {
+      setUploadingPhoto(false);
+    }
+  };
+
   const handleSaveTeam = async (e) => {
     e.preventDefault();
     try {
@@ -417,16 +438,16 @@ export default function AdminCMSPage() {
         </div>
       )}
 
-      {/* 3. TEAM TAB (Ready for real team members) */}
+      {/* 3. TEAM TAB */}
       {activeTab === 'team' && (
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-sm font-bold text-slate-900 dark:text-white">
-                Team Profiles Directory
+                Team Profiles Directory ({team.length})
               </h3>
               <p className="text-xs text-slate-500">
-                Add verified team profiles when real photos and bios are available.
+                Manage leadership profiles, bios, portfolio links, and Cloudinary photos.
               </p>
             </div>
             <button
@@ -434,17 +455,18 @@ export default function AdminCMSPage() {
                 setIsNewMember(true);
                 setEditingMember({
                   name: '',
+                  nameAr: '',
                   position: '',
                   positionAr: '',
                   photo: '',
                   bio: '',
                   bioAr: '',
-                  socialLinks: { linkedin: '', twitter: '', github: '' },
+                  socialLinks: { portfolio: '', linkedin: '', twitter: '', github: '' },
                   displayOrder: team.length + 1,
                   status: 'active'
                 });
               }}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-xs"
             >
               <Plus className="w-4 h-4" />
               <span>Add Member</span>
@@ -460,37 +482,80 @@ export default function AdminCMSPage() {
                 Team Directory Ready
               </h4>
               <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                No mock profiles created. Real verified engineers and founders can be added dynamically using the "Add Member" button above.
+                No team profiles found. Click "Add Member" to create leadership and developer profiles.
               </p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {team.map((m) => (
                 <div
-                  key={m._id}
-                  className="rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 p-5 shadow-xs flex flex-col justify-between"
+                  key={m._id || m.name}
+                  className="rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 p-5 shadow-xs flex flex-col justify-between space-y-4 hover:border-brand-500/40 transition-all"
                 >
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h4 className="text-sm font-bold text-slate-900 dark:text-white">{m.name}</h4>
-                      <p className="text-xs text-brand-600">{m.position}</p>
+                  <div className="space-y-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={m.photo || '/assets/team/founder.jpeg'}
+                          alt={m.name}
+                          className="w-12 h-12 rounded-xl object-cover border border-slate-200 dark:border-slate-700 shadow-xs shrink-0"
+                          onError={(e) => {
+                            e.target.src = '/assets/team/founder.jpeg';
+                          }}
+                        />
+                        <div>
+                          <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
+                            {m.name}
+                          </h4>
+                          <span className="inline-block mt-0.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400">
+                            {m.position}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        <button
+                          onClick={() => {
+                            setIsNewMember(false);
+                            setEditingMember(m);
+                          }}
+                          className="p-1.5 text-slate-500 hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-navy-800 rounded-lg transition-colors"
+                          title="Edit"
+                        >
+                          <Edit2 className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteTeam(m._id)}
+                          className="p-1.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition-colors"
+                          title="Delete"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <button
-                        onClick={() => {
-                          setIsNewMember(false);
-                          setEditingMember(m);
-                        }}
-                        className="p-1 text-slate-500"
-                      >
-                        <Edit2 className="w-3.5 h-3.5" />
-                      </button>
-                      <button onClick={() => handleDeleteTeam(m._id)} className="p-1 text-red-500">
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
+
+                    <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed">
+                      {m.bio}
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-500 mt-2">{m.bio}</p>
+
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
+                    <span className="text-[11px] font-medium bg-slate-100 dark:bg-navy-800 px-2 py-0.5 rounded-md">
+                      Order: {m.displayOrder || 1}
+                    </span>
+                    {m.socialLinks?.portfolio ? (
+                      <a
+                        href={m.socialLinks.portfolio.startsWith('http') ? m.socialLinks.portfolio : `https://${m.socialLinks.portfolio}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 font-bold text-brand-600 dark:text-brand-400 hover:underline"
+                      >
+                        <span>Portfolio</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    ) : (
+                      <span className="text-[11px] text-slate-400 italic">No Portfolio</span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -792,50 +857,124 @@ export default function AdminCMSPage() {
       {/* --- TEAM MODAL DRAWER --- */}
       {editingMember && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs">
-          <div className="relative w-full max-w-md bg-white dark:bg-navy-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-6 space-y-4 text-xs">
+          <div className="relative w-full max-w-lg bg-white dark:bg-navy-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-6 space-y-4 text-xs max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
               <h3 className="text-base font-bold text-slate-900 dark:text-white">
-                {isNewMember ? 'Add Team Member' : 'Edit Member'}
+                {isNewMember ? 'Add Team Member' : 'Edit Team Member'}
               </h3>
               <button onClick={() => setEditingMember(null)}><X className="w-5 h-5 text-slate-400" /></button>
             </div>
 
-            <form onSubmit={handleSaveTeam} className="space-y-3">
+            <form onSubmit={handleSaveTeam} className="space-y-4">
+              {/* Photo Upload & Preview */}
               <div>
-                <label className="block font-bold mb-1">Full Name *</label>
+                <label className="block font-bold mb-1.5 text-slate-700 dark:text-slate-300">Profile Photo (Cloudinary FIAUS/team)</label>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-brand-500/30 bg-slate-100 dark:bg-navy-850 shrink-0">
+                    {editingMember.photo ? (
+                      <img
+                        src={editingMember.photo}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                        onError={(e) => { e.target.src = '/assets/team/founder.jpeg'; }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-slate-400">
+                        <Users className="w-6 h-6" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-brand-600 dark:text-brand-300 bg-brand-50 dark:bg-brand-950/70 border border-brand-200 dark:border-brand-800 cursor-pointer hover:bg-brand-100 transition-colors">
+                      <Upload className="w-3.5 h-3.5" />
+                      <span>{uploadingPhoto ? 'Uploading to Cloudinary...' : 'Upload New Photo'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        disabled={uploadingPhoto}
+                        onChange={handleTeamPhotoUpload}
+                        className="hidden"
+                      />
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Or enter image URL"
+                      value={editingMember.photo || ''}
+                      onChange={(e) => setEditingMember({ ...editingMember, photo: e.target.value })}
+                      className="w-full px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850 text-xs"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Name (EN & AR) */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Name (English) *</label>
+                  <input
+                    type="text"
+                    required
+                    value={editingMember.name || ''}
+                    onChange={(e) => setEditingMember({ ...editingMember, name: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  />
+                </div>
+                <div>
+                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Name (Arabic)</label>
+                  <input
+                    type="text"
+                    value={editingMember.nameAr || ''}
+                    onChange={(e) => setEditingMember({ ...editingMember, nameAr: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  />
+                </div>
+              </div>
+
+              {/* Role / Position (EN & AR) */}
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Role / Position (EN) *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Founder & CEO"
+                    value={editingMember.position || ''}
+                    onChange={(e) => setEditingMember({ ...editingMember, position: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  />
+                </div>
+                <div>
+                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Role / Position (AR)</label>
+                  <input
+                    type="text"
+                    placeholder="e.g. المؤسس والرئيس التنفيذي"
+                    value={editingMember.positionAr || ''}
+                    onChange={(e) => setEditingMember({ ...editingMember, positionAr: e.target.value })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  />
+                </div>
+              </div>
+
+              {/* Portfolio URL */}
+              <div>
+                <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Portfolio URL (Leave empty if none)</label>
                 <input
                   type="text"
-                  required
-                  value={editingMember.name || ''}
-                  onChange={(e) => setEditingMember({ ...editingMember, name: e.target.value })}
+                  placeholder="https://fahaddev0.vercel.app/ or https://kiron.dev"
+                  value={editingMember.socialLinks?.portfolio || ''}
+                  onChange={(e) =>
+                    setEditingMember({
+                      ...editingMember,
+                      socialLinks: { ...editingMember.socialLinks, portfolio: e.target.value }
+                    })
+                  }
                   className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
                 />
               </div>
 
+              {/* Bio (EN) */}
               <div>
-                <label className="block font-bold mb-1">Role / Position *</label>
-                <input
-                  type="text"
-                  required
-                  value={editingMember.position || ''}
-                  onChange={(e) => setEditingMember({ ...editingMember, position: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
-                />
-              </div>
-
-              <div>
-                <label className="block font-bold mb-1">Photo URL</label>
-                <input
-                  type="text"
-                  placeholder="/assets/team/photo.jpg"
-                  value={editingMember.photo || ''}
-                  onChange={(e) => setEditingMember({ ...editingMember, photo: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
-                />
-              </div>
-
-              <div>
-                <label className="block font-bold mb-1">Bio</label>
+                <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Bio (English)</label>
                 <textarea
                   rows={2}
                   value={editingMember.bio || ''}
@@ -844,11 +983,45 @@ export default function AdminCMSPage() {
                 />
               </div>
 
+              {/* Bio (AR) */}
+              <div>
+                <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Bio (Arabic)</label>
+                <textarea
+                  rows={2}
+                  value={editingMember.bioAr || ''}
+                  onChange={(e) => setEditingMember({ ...editingMember, bioAr: e.target.value })}
+                  className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                />
+              </div>
+
+              {/* Display Order & Active status */}
+              <div className="grid grid-cols-2 gap-3 items-center">
+                <div>
+                  <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Display Order</label>
+                  <input
+                    type="number"
+                    value={editingMember.displayOrder || 1}
+                    onChange={(e) => setEditingMember({ ...editingMember, displayOrder: parseInt(e.target.value) || 1 })}
+                    className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  />
+                </div>
+                <div className="flex items-center gap-2 pt-5">
+                  <input
+                    type="checkbox"
+                    id="teamActive"
+                    checked={editingMember.status !== 'inactive'}
+                    onChange={(e) => setEditingMember({ ...editingMember, status: e.target.checked ? 'active' : 'inactive' })}
+                    className="w-4 h-4 rounded text-brand-600"
+                  />
+                  <label htmlFor="teamActive" className="font-bold text-slate-700 dark:text-slate-300">Active Profile</label>
+                </div>
+              </div>
+
               <div className="flex justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
                 <button type="button" onClick={() => setEditingMember(null)} className="px-4 py-2 font-semibold rounded-xl border border-slate-200 dark:border-slate-800">
                   Cancel
                 </button>
-                <button type="submit" className="px-5 py-2 font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl">
+                <button type="submit" className="px-5 py-2 font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-xs">
                   Save Member
                 </button>
               </div>

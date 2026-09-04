@@ -90,10 +90,11 @@ export const fetchDashboardMetrics = () => api.get('/settings/metrics');
 export const loginAdmin = (credentials) => api.post('/auth/login', credentials);
 export const fetchAdminProfile = () => api.get('/auth/profile');
 
-// File Upload
-export const uploadFile = (file) => {
+// File Upload (with Cloudinary dedicated folder support)
+export const uploadFile = (file, folder = 'team') => {
   const formData = new FormData();
   formData.append('file', file);
+  formData.append('folder', folder);
   return api.post('/upload/single', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   });

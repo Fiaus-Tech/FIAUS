@@ -1,13 +1,20 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
+import dns from 'dns';
 import Admin from '../models/Admin.js';
 import Project from '../models/Project.js';
 import Service from '../models/Service.js';
 import FAQ from '../models/FAQ.js';
 import WebsiteSettings from '../models/WebsiteSettings.js';
 
-dotenv.config({ path: path.resolve('server/.env') });
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {}
+
+dotenv.config();
+if (fs.existsSync('server/.env')) dotenv.config({ path: 'server/.env' });
 
 const realProjects = [
   {
