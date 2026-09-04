@@ -1,0 +1,18 @@
+# Ignore raw image files in root directory
+*.png
+*.jpeg
+*.jpg
+
+# Ignore dependencies and artifacts
+node_modules
+client/node_modules
+server/node_modules
+client/dist
+dist
+build
+.git
+.env*
+server/.env
+client/.env
+server/uploads
+data/*.json
