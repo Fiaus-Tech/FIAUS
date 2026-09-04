@@ -25,8 +25,9 @@ export const loginAdmin = async (req, res, next) => {
     }
 
     const targetEmail = email.toLowerCase().trim();
-    const defaultEmail = (process.env.ADMIN_DEFAULT_EMAIL || 'admin@fiaus.tech').toLowerCase();
-    const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'FiausTech2026!Admin';
+    const defaultEmail = (process.env.ADMIN_DEFAULT_EMAIL || 'fiaustech@hotmail.com').toLowerCase();
+    const defaultPassword = process.env.ADMIN_DEFAULT_PASSWORD || 'Fahad14113@#';
+
 
     if (isMongoConnected()) {
       let admin = await Admin.findOne({ email: targetEmail });
