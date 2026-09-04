@@ -63,6 +63,16 @@ if (!fs.existsSync(uploadsPath)) {
 }
 app.use('/uploads', express.static(uploadsPath));
 
+// Ensure Database Connection for every request (Serverless & Stateful)
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+  } catch (err) {
+    console.error('[DB Connection Middleware Error]', err);
+  }
+  next();
+});
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
@@ -85,10 +95,13 @@ app.get('/api/health', (req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
-// Start Server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`[FIAUS Tech API Server] Running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-});
+// Start Server in standalone mode (not inside Vercel Serverless Function)
+if (!process.env.VERCEL && process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`[FIAUS Tech API Server] Running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+  });
+}
 
 export default app;
+
 
