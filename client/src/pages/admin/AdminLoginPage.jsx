@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { Lock, Mail, AlertCircle, ArrowLeft, ShieldCheck } from 'lucide-react';
 
 export default function AdminLoginPage() {
-  const [email, setEmail] = useState('admin@fiaus.tech');
+  const [email, setEmail] = useState('fiaustech@hotmail.com');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);

@@ -31,7 +31,7 @@ async function verifyFullSystem() {
     const login = await fetch(`${apiBase}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'admin@fiaus.tech', password: 'FiausTech2026!Admin' })
+      body: JSON.stringify({ email: 'fiaustech@hotmail.com', password: 'Fahad14113@#' })
     }).then(r => r.json());
     const token = login.data?.token;
     console.log('✔ Admin token generated for:', login.data?.email);
