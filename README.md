@@ -9,7 +9,8 @@
 </p>
 
 <p align="center">
-  A production-ready, full-stack digital platform engineered for <strong>FIAUS Tech</strong> — a premier international Digital & AI Agency delivering bespoke web engineering, autonomous AI workflows, and cloud architectures for clients in <strong>Saudi Arabia</strong>, <strong>Bangladesh</strong>, and <strong>worldwide</strong>.
+  A production-ready, full-stack digital platform engineered for <strong>FIAUS Tech</strong> — a premier international Digital & AI Agency delivering bespoke web engineering, autonomous AI workflows, and cloud architectures for clients in <strong>Saudi Arabia</strong> and <strong>worldwide</strong>.
+
 </p>
 
 <p align="center">

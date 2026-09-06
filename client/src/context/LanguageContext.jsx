@@ -6,8 +6,9 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
     const saved = localStorage.getItem('fiaus_lang');
-    return saved || 'en';
+    return saved || 'ar';
   });
+
 
   const isRTL = language === 'ar';
 

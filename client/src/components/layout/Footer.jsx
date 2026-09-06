@@ -69,9 +69,10 @@ export default function Footer() {
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300">
                 <Globe className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
-                <span>Saudi Arabia • Bangladesh • Global Delivery</span>
+                <span>{language === 'ar' ? 'المملكة العربية السعودية • خدمات عالمية' : 'Saudi Arabia • Global Delivery'}</span>
               </span>
             </div>
+
           </div>
 
           {/* Col 2: Navigation */}

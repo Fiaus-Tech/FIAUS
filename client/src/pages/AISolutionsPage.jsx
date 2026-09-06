@@ -143,9 +143,10 @@ export default function AISolutionsPage({ onOpenStartProject }) {
 
           <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
             {language === 'ar'
-              ? 'نساعد الشركات الرائدة في المملكة العربية السعودية وبنغلاديش ودولياً على خفض التكاليف التشغيلية ومضاعفة الإنتاجية عبر وكلاء ذكاء اصطناعي مخصصين، أتمتة مسارات العمل، والتكامل السحابي الشامل.'
+              ? 'نساعد الشركات الرائدة في المملكة العربية السعودية ودولياً على خفض التكاليف التشغيلية ومضاعفة الإنتاجية عبر وكلاء ذكاء اصطناعي مخصصين، أتمتة مسارات العمل، والتكامل السحابي الشامل.'
               : 'FIAUS Tech engineers proprietary AI copilots, enterprise RAG knowledge systems, and multi-channel automation pipelines designed to eliminate operational friction and accelerate business velocity.'}
           </p>
+
 
           <div className="pt-2 flex flex-wrap items-center gap-4">
             <button
