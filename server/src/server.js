@@ -17,7 +17,16 @@ import cmsRoutes from './routes/cmsRoutes.js';
 import settingsRoutes from './routes/settingsRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 
-dotenv.config({ path: path.resolve('server/.env') });
+const envPaths = [path.resolve('server/.env'), path.resolve('.env')];
+for (const envPath of envPaths) {
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath });
+    break;
+  }
+}
+if (!process.env.MONGODB_URI) {
+  dotenv.config();
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -35,9 +44,9 @@ app.use(
 
 app.use(
   cors({
-    origin: '*',
+    origin: true,
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
   })
 );

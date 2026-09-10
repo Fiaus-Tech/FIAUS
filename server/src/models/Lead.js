@@ -39,7 +39,6 @@ const leadSchema = new mongoose.Schema(
     },
     preferredContact: {
       type: String,
-      enum: ['WhatsApp', 'Email', 'Telegram', 'Phone', 'Meeting'],
       default: 'WhatsApp'
     },
     fileAttachment: {
@@ -47,7 +46,6 @@ const leadSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['New', 'Contacted', 'In Discussion', 'Proposal Sent', 'Won', 'Lost'],
       default: 'New'
     },
     internalNotes: [

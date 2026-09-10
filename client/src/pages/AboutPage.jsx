@@ -59,8 +59,9 @@ export default function AboutPage({ onOpenStartProject }) {
     let isMounted = true;
     fetchTeamMembers()
       .then((res) => {
-        if (isMounted && res.data?.data && res.data.data.length > 0) {
-          setTeam(res.data.data);
+        const teamList = res?.data || (Array.isArray(res) ? res : null);
+        if (isMounted && Array.isArray(teamList) && teamList.length > 0) {
+          setTeam(teamList);
         }
       })
       .catch(() => {
@@ -87,8 +88,8 @@ export default function AboutPage({ onOpenStartProject }) {
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
             {language === 'ar'
-              ? 'فياوس تك هي وكالة رقمية وحلول ذكاء اصطناعي حديثة، تأسست لتمكين الشركات الطموحة في المملكة العربية السعودية والعالم من خلال أنظمة تقنية عالية الكفاءة وتطبيقات مخصصة.'
-              : 'FIAUS Tech is an international Digital & AI Agency engineered to empower forward-looking businesses across Saudi Arabia and global markets with high-performance web systems, custom AI automation, and scalable cloud products.'}
+              ? 'فياوس تك هي وكالة رقمية وحلول ذكاء اصطناعي حديثة، تأسست لتمكين الشركات الطموحة في المملكة العربية السعودية وبنغلاديش والعالم من خلال أنظمة تقنية عالية الكفاءة وتطبيقات مخصصة.'
+              : 'FIAUS Tech is an international Digital & AI Agency engineered to empower forward-looking businesses across Bangladesh, Saudi Arabia, and global markets with high-performance web systems, custom AI automation, and scalable cloud products.'}
           </p>
         </div>
 
@@ -135,8 +136,8 @@ export default function AboutPage({ onOpenStartProject }) {
             </div>
             <h2 className="text-3xl font-extrabold tracking-tight">
               {language === 'ar'
-                ? 'نخدم العملاء في المملكة العربية السعودية وحول العالم'
-                : 'Serving Clients in Saudi Arabia and Worldwide'}
+                ? 'نخدم العملاء في المملكة العربية السعودية وبنغلاديش وحول العالم'
+                : 'Serving Clients in Saudi Arabia, Bangladesh, and Worldwide'}
             </h2>
 
             <p className="text-slate-300 leading-relaxed">

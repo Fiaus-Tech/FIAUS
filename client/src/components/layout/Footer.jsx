@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import { useSettings } from '../../context/SettingsContext';
 import {
   Mail,
   Phone,
@@ -15,19 +16,20 @@ import {
 
 export default function Footer() {
   const { language, t, isRTL } = useLanguage();
+  const { settings } = useSettings();
 
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: 'Facebook', url: 'https://facebook.com/fiaustech', icon: 'FB' },
-    { name: 'Instagram', url: 'https://instagram.com/fiaustech', icon: 'IG' },
-    { name: 'X / Twitter', url: 'https://x.com/fiaus_tech', icon: 'X' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/fiaus-tech', icon: 'IN' },
-    { name: 'GitHub', url: 'https://github.com/Fiaus-Tech', icon: 'GH' },
-    { name: 'YouTube', url: 'https://youtube.com/@FiausTech', icon: 'YT' },
-    { name: 'Telegram', url: 'https://t.me/fiaustech', icon: 'TG' },
-    { name: 'TikTok', url: 'https://tiktok.com/@fiaustech', icon: 'TK' },
-    { name: 'Snapchat', url: 'https://snapchat.com/add/fiaustech', icon: 'SC' }
+    { name: 'Facebook', url: settings?.socialLinks?.facebook || 'https://facebook.com/fiaustech', icon: 'FB' },
+    { name: 'Instagram', url: settings?.socialLinks?.instagram || 'https://instagram.com/fiaustech', icon: 'IG' },
+    { name: 'X / Twitter', url: settings?.socialLinks?.twitter || 'https://x.com/fiaus_tech', icon: 'X' },
+    { name: 'LinkedIn', url: settings?.socialLinks?.linkedin || 'https://www.linkedin.com/in/fiaus-tech', icon: 'IN' },
+    { name: 'GitHub', url: settings?.socialLinks?.github || 'https://github.com/Fiaus-Tech', icon: 'GH' },
+    { name: 'YouTube', url: settings?.socialLinks?.youtube || 'https://youtube.com/@FiausTech', icon: 'YT' },
+    { name: 'Telegram', url: settings?.socialLinks?.telegram || 'https://t.me/fiaustech', icon: 'TG' },
+    { name: 'TikTok', url: settings?.socialLinks?.tiktok || 'https://tiktok.com/@fiaustech', icon: 'TK' },
+    { name: 'Snapchat', url: settings?.socialLinks?.snapchat || 'https://snapchat.com/add/fiaustech', icon: 'SC' }
   ];
 
   return (
@@ -43,9 +45,12 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 bg-white">
                 <img
-                  src="/assets/logo.jpeg"
+                  src={settings?.logo || '/assets/logo.jpeg'}
                   alt="FIAUS Tech Logo"
                   className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.src = '/assets/logo.jpeg';
+                  }}
                 />
               </div>
               <div>
@@ -69,6 +74,7 @@ export default function Footer() {
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300">
                 <Globe className="w-3.5 h-3.5 text-brand-600 dark:text-brand-400" />
+                <span>Saudi Arabia • Bangladesh • Global Delivery</span>
                 <span>{language === 'ar' ? 'المملكة العربية السعودية • خدمات عالمية' : 'Saudi Arabia • Global Delivery'}</span>
               </span>
             </div>
@@ -147,33 +153,33 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href="mailto:fiaustech@hotmail.com"
+                  href={`mailto:${settings?.email || 'fiaustech@hotmail.com'}`}
                   className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 >
                   <Mail className="w-4 h-4 text-brand-600 dark:text-brand-400 shrink-0" />
-                  <span>fiaustech@hotmail.com</span>
+                  <span>{settings?.email || 'fiaustech@hotmail.com'}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://wa.me/966511269264"
+                  href={settings?.whatsapp ? (settings.whatsapp.startsWith('http') ? settings.whatsapp : `https://wa.me/${settings.whatsapp.replace(/[^0-9]/g, '')}`) : `https://wa.me/${(settings?.phone || '966511269264').replace(/[^0-9]/g, '')}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 >
                   <Phone className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span dir="ltr">+966 51 126 9264</span>
+                  <span dir="ltr">{settings?.phone || '+966 51 126 9264'}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://t.me/fiaustech"
+                  href={settings?.socialLinks?.telegram || 'https://t.me/fiaustech'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
                 >
                   <Send className="w-4 h-4 text-sky-500 shrink-0" />
-                  <span>Telegram: @fiaustech</span>
+                  <span>Telegram: {settings?.socialLinks?.telegram ? settings.socialLinks.telegram.replace('https://t.me/', '@') : '@fiaustech'}</span>
                 </a>
               </li>
               <li className="pt-2">

@@ -15,8 +15,7 @@ const faqSchema = new mongoose.Schema(
     answerAr: String,
     category: {
       type: String,
-      enum: ['General', 'Development', 'AI & Automation', 'Engagement & Pricing', 'Support'],
-      default: 'General'
+      default: 'Services'
     },
     categoryAr: String,
     displayOrder: {

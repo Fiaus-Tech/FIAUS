@@ -19,22 +19,26 @@ export const submitLead = async (req, res, next) => {
       fileAttachment
     } = req.body;
 
-    if (!name || !email || !projectDetails) {
+    const details = projectDetails || req.body.projectDescription || req.body.message || 'New project inquiry';
+    const needed = serviceNeeded || req.body.serviceType || 'Full-Stack Development';
+    const budgetVal = budget || req.body.budgetRange || 'To be discussed';
+
+    if (!name || !email) {
       return res.status(400).json({
         success: false,
-        message: 'Name, email, and project details are required.'
+        message: 'Name and email are required.'
       });
     }
 
     const leadPayload = {
       name,
       email,
-      whatsapp,
+      whatsapp: whatsapp || req.body.phone || '',
       country: country || 'International',
-      company,
-      serviceNeeded: serviceNeeded || 'Full-Stack Development',
-      budget: budget || 'To be discussed',
-      projectDetails,
+      company: company || '',
+      serviceNeeded: needed,
+      budget: budgetVal,
+      projectDetails: details,
       preferredContact: preferredContact || 'WhatsApp',
       fileAttachment,
       status: 'New',
@@ -46,7 +50,7 @@ export const submitLead = async (req, res, next) => {
       return res.status(201).json({
         success: true,
         message: 'Your project inquiry has been received. The FIAUS Tech team will contact you shortly.',
-        data: { id: lead._id, createdAt: lead.createdAt }
+        data: { _id: lead._id, id: lead._id, ...lead.toObject() }
       });
     }
 
@@ -62,7 +66,7 @@ export const submitLead = async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: 'Your project inquiry has been received. The FIAUS Tech team will contact you shortly.',
-      data: { id: newLead._id, createdAt: newLead.createdAt }
+      data: { _id: newLead._id, id: newLead._id, ...newLead }
     });
   } catch (error) {
     next(error);

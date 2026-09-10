@@ -198,12 +198,16 @@ export const createTeamMember = async (req, res, next) => {
 
 export const updateTeamMember = async (req, res, next) => {
   try {
+    const { id } = req.params;
     if (isMongo()) {
-      const member = await TeamMember.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const isObjectId = mongoose.Types.ObjectId.isValid(id);
+      const query = isObjectId ? { _id: id } : { _id: id };
+      const member = await TeamMember.findByIdAndUpdate(id, { $set: req.body }, { new: true });
+      if (!member) return res.status(404).json({ success: false, message: 'Member not found.' });
       return res.status(200).json({ success: true, data: member });
     }
     const list = store.getTeam();
-    const idx = list.findIndex((m) => m._id === req.params.id);
+    const idx = list.findIndex((m) => m._id === id);
     if (idx !== -1) {
       list[idx] = { ...list[idx], ...req.body, updatedAt: new Date().toISOString() };
       store.saveTeam(list);
@@ -217,12 +221,14 @@ export const updateTeamMember = async (req, res, next) => {
 
 export const deleteTeamMember = async (req, res, next) => {
   try {
+    const { id } = req.params;
     if (isMongo()) {
-      await TeamMember.findByIdAndDelete(req.params.id);
+      const member = await TeamMember.findByIdAndDelete(id);
+      if (!member) return res.status(404).json({ success: false, message: 'Member not found.' });
       return res.status(200).json({ success: true, message: 'Member deleted.' });
     }
     let list = store.getTeam();
-    list = list.filter((m) => m._id !== req.params.id);
+    list = list.filter((m) => m._id !== id);
     store.saveTeam(list);
     res.status(200).json({ success: true, message: 'Member deleted.' });
   } catch (error) {
@@ -251,14 +257,19 @@ export const getTestimonials = async (req, res, next) => {
 
 export const createTestimonial = async (req, res, next) => {
   try {
+    const data = {
+      ...req.body,
+      testimonial: req.body.testimonial || req.body.content || '',
+      content: req.body.content || req.body.testimonial || ''
+    };
     if (isMongo()) {
-      const testimonial = await Testimonial.create(req.body);
+      const testimonial = await Testimonial.create(data);
       return res.status(201).json({ success: true, data: testimonial });
     }
     const list = store.getTestimonials();
     const newTestimonial = {
       _id: 'test_' + Date.now(),
-      ...req.body,
+      ...data,
       createdAt: new Date().toISOString()
     };
     list.push(newTestimonial);
@@ -271,14 +282,21 @@ export const createTestimonial = async (req, res, next) => {
 
 export const updateTestimonial = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    const data = {
+      ...req.body,
+      testimonial: req.body.testimonial || req.body.content || undefined,
+      content: req.body.content || req.body.testimonial || undefined
+    };
     if (isMongo()) {
-      const testimonial = await Testimonial.findByIdAndUpdate(req.params.id, req.body, { new: true });
+      const testimonial = await Testimonial.findByIdAndUpdate(id, { $set: data }, { new: true });
+      if (!testimonial) return res.status(404).json({ success: false, message: 'Testimonial not found.' });
       return res.status(200).json({ success: true, data: testimonial });
     }
     const list = store.getTestimonials();
-    const idx = list.findIndex((t) => t._id === req.params.id);
+    const idx = list.findIndex((t) => t._id === id);
     if (idx !== -1) {
-      list[idx] = { ...list[idx], ...req.body, updatedAt: new Date().toISOString() };
+      list[idx] = { ...list[idx], ...data, updatedAt: new Date().toISOString() };
       store.saveTestimonials(list);
       return res.status(200).json({ success: true, data: list[idx] });
     }
@@ -290,12 +308,14 @@ export const updateTestimonial = async (req, res, next) => {
 
 export const deleteTestimonial = async (req, res, next) => {
   try {
+    const { id } = req.params;
     if (isMongo()) {
-      await Testimonial.findByIdAndDelete(req.params.id);
+      const testimonial = await Testimonial.findByIdAndDelete(id);
+      if (!testimonial) return res.status(404).json({ success: false, message: 'Testimonial not found.' });
       return res.status(200).json({ success: true, message: 'Testimonial deleted.' });
     }
     let list = store.getTestimonials();
-    list = list.filter((t) => t._id !== req.params.id);
+    list = list.filter((t) => t._id !== id);
     store.saveTestimonials(list);
     res.status(200).json({ success: true, message: 'Testimonial deleted.' });
   } catch (error) {

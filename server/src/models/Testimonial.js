@@ -21,9 +21,14 @@ const testimonialSchema = new mongoose.Schema(
     photo: String,
     testimonial: {
       type: String,
-      required: true
+      default: ''
     },
     testimonialAr: String,
+    content: {
+      type: String,
+      default: ''
+    },
+    contentAr: String,
     rating: {
       type: Number,
       min: 1,

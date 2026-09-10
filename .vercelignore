@@ -1,8 +1,13 @@
+# Ignore raw image files in root directory
+*.png
+*.jpeg
+*.jpg
 # Ignore raw screenshot and loose image files in the ROOT directory ONLY
 /*.png
 /*.jpeg
 /*.jpg
 
+# Ignore dependencies and artifacts
 # Ignore dependencies and build artifacts
 node_modules
 client/node_modules
@@ -16,3 +21,4 @@ server/.env
 client/.env
 server/uploads
 data/*.json
+

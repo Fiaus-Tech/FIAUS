@@ -28,8 +28,8 @@ export default function ProcessPage({ onOpenStartProject }) {
       title: language === 'ar' ? '1. الاستكشاف وجلسة التعمق' : '1. Discovery & Needs Assessment',
       duration: language === 'ar' ? 'الأسبوع 1' : 'Week 1',
       desc: language === 'ar'
-        ? 'نعقد جلسات تفصيلية لفهم نموذج أعمالك، الجمهور المستهدف في السعودية أو دولياً، والتحديات التقنية التي تواجهها.'
-        : 'In-depth stakeholder sessions to analyze your core business model, target demographics across Saudi Arabia or globally, and technical constraints.',
+        ? 'نعقد جلسات تفصيلية لفهم نموذج أعمالك، الجمهور المستهدف في السعودية وبنغلاديش أو دولياً، والتحديات التقنية التي تواجهها.'
+        : 'In-depth stakeholder sessions to analyze your core business model, target demographics across Saudi Arabia, Bangladesh, or globally, and technical constraints.',
 
       deliverables: [
         language === 'ar' ? 'وثيقة نطاق العمل التفصيلي (Scope of Work)' : 'Project Scope Document',

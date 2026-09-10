@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { useSettings } from '../../context/SettingsContext';
 import { Sun, Moon, Globe, Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
 
 export default function Navbar({ onOpenStartProject }) {
@@ -9,6 +10,7 @@ export default function Navbar({ onOpenStartProject }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { language, toggleLanguage, isRTL, t } = useLanguage();
+  const { settings } = useSettings();
   const location = useLocation();
 
   useEffect(() => {
@@ -48,9 +50,12 @@ export default function Navbar({ onOpenStartProject }) {
           <Link to="/" className="flex items-center gap-3 group focus:outline-none">
             <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-md ring-1 ring-slate-200 dark:ring-slate-700/60 bg-white group-hover:scale-105 transition-transform duration-200">
               <img
-                src="/assets/logo.jpeg"
+                src={settings?.logo || '/assets/logo.jpeg'}
                 alt="FIAUS Tech Logo"
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.src = '/assets/logo.jpeg';
+                }}
               />
             </div>
             <div className="flex flex-col">

@@ -14,6 +14,7 @@ router.post('/', submitLead);
 router.get('/', protect, getLeads);
 router.get('/:id', protect, getLeadById);
 router.put('/:id', protect, updateLeadStatus);
+router.put('/:id/status', protect, updateLeadStatus);
 router.delete('/:id', protect, deleteLead);
 
 export default router;

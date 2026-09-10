@@ -125,11 +125,14 @@ export default function AdminCMSPage() {
     setUploadingPhoto(true);
     try {
       const res = await uploadFile(file, 'team');
-      if (res.data?.success && res.data?.data?.url) {
-        setEditingMember((prev) => ({ ...prev, photo: res.data.data.url }));
+      const photoUrl = res?.data?.url || res?.url || (res?.data && typeof res.data === 'string' ? res.data : null);
+      if (photoUrl) {
+        setEditingMember((prev) => ({ ...prev, photo: photoUrl }));
+      } else {
+        alert('Photo uploaded but no URL was returned');
       }
     } catch (err) {
-      alert('Photo upload failed: ' + err.message);
+      alert('Photo upload failed: ' + (err.response?.data?.message || err.message));
     } finally {
       setUploadingPhoto(false);
     }

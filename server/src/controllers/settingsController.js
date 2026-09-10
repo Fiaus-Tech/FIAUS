@@ -31,13 +31,19 @@ export const updateSettings = async (req, res, next) => {
       if (!settings) {
         settings = await WebsiteSettings.create(req.body);
       } else {
-        settings = await WebsiteSettings.findByIdAndUpdate(settings._id, req.body, { new: true });
+        settings = await WebsiteSettings.findByIdAndUpdate(settings._id, { $set: req.body }, { new: true, runValidators: true });
       }
       return res.status(200).json({ success: true, data: settings });
     }
 
     let settings = store.getSettings();
-    settings = { ...settings, ...req.body };
+    settings = {
+      ...settings,
+      ...req.body,
+      socialLinks: { ...(settings.socialLinks || {}), ...(req.body.socialLinks || {}) },
+      analytics: { ...(settings.analytics || {}), ...(req.body.analytics || {}) },
+      seo: { ...(settings.seo || {}), ...(req.body.seo || {}) }
+    };
     store.saveSettings(settings);
     res.status(200).json({ success: true, data: settings });
   } catch (error) {

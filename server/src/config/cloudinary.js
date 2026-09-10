@@ -1,7 +1,19 @@
 import { v2 as cloudinary } from 'cloudinary';
 import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
 
-dotenv.config();
+// Load .env from server/.env or root .env if exists
+const envPaths = [path.resolve('server/.env'), path.resolve('.env')];
+for (const envPath of envPaths) {
+  if (fs.existsSync(envPath)) {
+    dotenv.config({ path: envPath });
+    break;
+  }
+}
+if (!process.env.CLOUDINARY_CLOUD_NAME) {
+  dotenv.config();
+}
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'n5yq0whs',

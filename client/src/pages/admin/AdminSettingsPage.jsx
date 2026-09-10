@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { fetchSettings, updateSettings } from '../../services/api';
-import { Settings, Save, CheckCircle2, Globe, Share2, BarChart2 } from 'lucide-react';
+import { fetchSettings, updateSettings, uploadFile } from '../../services/api';
+import { useSettings } from '../../context/SettingsContext';
+import { Settings, Save, CheckCircle2, Globe, Share2, BarChart2, Image, Upload, RotateCcw } from 'lucide-react';
 
 export default function AdminSettingsPage() {
+  const { refreshSettings } = useSettings();
   const [settings, setSettings] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploadingLogo, setUploadingLogo] = useState(false);
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -24,6 +27,38 @@ export default function AdminSettingsPage() {
     loadSettings();
   }, []);
 
+  const handleLogoUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploadingLogo(true);
+    try {
+      const res = await uploadFile(file, 'branding');
+      const logoUrl = res?.data?.url || res?.url || (res?.data && typeof res.data === 'string' ? res.data : null);
+      const publicId = res?.data?.public_id || '';
+      if (logoUrl) {
+        setSettings((prev) => ({
+          ...prev,
+          logo: logoUrl,
+          logoPublicId: publicId
+        }));
+      } else {
+        alert('Logo uploaded but no URL was returned');
+      }
+    } catch (err) {
+      alert('Logo upload failed: ' + (err.response?.data?.message || err.message));
+    } finally {
+      setUploadingLogo(false);
+    }
+  };
+
+  const handleResetLogo = () => {
+    setSettings((prev) => ({
+      ...prev,
+      logo: '/assets/logo.jpeg',
+      logoPublicId: ''
+    }));
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     setSaving(true);
@@ -31,10 +66,11 @@ export default function AdminSettingsPage() {
 
     try {
       await updateSettings(settings);
+      await refreshSettings();
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
     } catch (e) {
-      alert('Save failed: ' + e.message);
+      alert('Save failed: ' + (e.response?.data?.message || e.message));
     } finally {
       setSaving(false);
     }
@@ -65,6 +101,91 @@ export default function AdminSettingsPage() {
       </div>
 
       <form onSubmit={handleSave} className="space-y-8">
+        {/* Website Branding & Logo Card */}
+        <div className="rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 p-6 shadow-xs space-y-4">
+          <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+            <Image className="w-4 h-4 text-brand-600" />
+            <span>Website Branding & Dynamic Logo</span>
+          </h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            Upload your official agency logo (PNG, JPG, WEBP, or SVG). Updating the logo here immediately reflects across the entire website Header, Footer, and Admin Sidebar.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            {/* Logo Live Preview */}
+            <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-navy-850 border border-slate-200 dark:border-slate-800">
+              <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-md ring-1 ring-slate-200 dark:ring-slate-700 bg-white shrink-0 flex items-center justify-center">
+                <img
+                  src={settings.logo || '/assets/logo.jpeg'}
+                  alt="Active Logo Preview"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.src = '/assets/logo.jpeg';
+                  }}
+                />
+              </div>
+              <div className="space-y-1">
+                <span className="text-xs font-bold text-slate-900 dark:text-white block">
+                  Active Website Logo
+                </span>
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate max-w-xs">
+                  {settings.logo || '/assets/logo.jpeg'}
+                </span>
+                {settings.logo && settings.logo !== '/assets/logo.jpeg' && (
+                  <button
+                    type="button"
+                    onClick={handleResetLogo}
+                    className="inline-flex items-center gap-1 text-[11px] font-semibold text-red-500 hover:text-red-700 pt-1"
+                  >
+                    <RotateCcw className="w-3 h-3" />
+                    <span>Reset to Default Logo</span>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Logo Upload & Input */}
+            <div className="space-y-3">
+              <div>
+                <label className="block font-bold text-slate-700 dark:text-slate-300 text-xs mb-1.5">
+                  Upload New Logo (Cloudinary FIAUS/branding)
+                </label>
+                <div className="flex items-center gap-2">
+                  <label className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-brand-600 dark:text-brand-300 bg-brand-50 dark:bg-brand-950/70 border border-brand-200 dark:border-brand-800 cursor-pointer hover:bg-brand-100 dark:hover:bg-brand-950 transition-colors">
+                    <Upload className="w-3.5 h-3.5" />
+                    <span>{uploadingLogo ? 'Uploading to Cloudinary...' : 'Choose Logo File'}</span>
+                    <input
+                      type="file"
+                      accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                      disabled={uploadingLogo}
+                      onChange={handleLogoUpload}
+                      className="hidden"
+                    />
+                  </label>
+                  {settings.logoPublicId && (
+                    <span className="text-[10px] text-slate-400 font-mono">
+                      ID: {settings.logoPublicId}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 dark:text-slate-300 text-xs mb-1">
+                  Or Direct Logo URL
+                </label>
+                <input
+                  type="text"
+                  value={settings.logo || ''}
+                  placeholder="https://res.cloudinary.com/..."
+                  onChange={(e) => setSettings({ ...settings, logo: e.target.value })}
+                  className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Contact Info Card */}
         <div className="rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 p-6 shadow-xs space-y-4">
           <h2 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">

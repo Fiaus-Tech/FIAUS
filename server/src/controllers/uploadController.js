@@ -6,24 +6,31 @@ export const uploadSingleFile = async (req, res) => {
     return res.status(400).json({ success: false, message: 'No file uploaded.' });
   }
 
+  const filePath = req.file.path;
+
   try {
-    // Dedicated folder inside existing Cloudinary environment
     const folderType = req.body.folder || 'team';
     const cloudinaryFolder = `FIAUS/${folderType}`;
+    const isSvg = req.file.mimetype === 'image/svg+xml';
 
-    const uploadResult = await cloudinary.uploader.upload(req.file.path, {
+    const uploadOptions = {
       folder: cloudinaryFolder,
-      resource_type: 'auto',
-      transformation: [
+      resource_type: isSvg ? 'raw' : 'auto'
+    };
+
+    if (!isSvg) {
+      uploadOptions.transformation = [
         { quality: 'auto:good' },
         { fetch_format: 'auto' }
-      ]
-    });
+      ];
+    }
+
+    const uploadResult = await cloudinary.uploader.upload(filePath, uploadOptions);
 
     // Clean up local temp file after successful upload
-    if (fs.existsSync(req.file.path)) {
+    if (fs.existsSync(filePath)) {
       try {
-        fs.unlinkSync(req.file.path);
+        fs.unlinkSync(filePath);
       } catch (err) {
         console.error('Error removing temp file:', err);
       }
@@ -38,12 +45,12 @@ export const uploadSingleFile = async (req, res) => {
         originalname: req.file.originalname,
         size: uploadResult.bytes || req.file.size,
         mimetype: req.file.mimetype,
-        format: uploadResult.format,
+        format: uploadResult.format || (isSvg ? 'svg' : ''),
         folder: cloudinaryFolder
       }
     });
   } catch (error) {
-    console.error('Cloudinary upload error, using local fallback:', error.message);
+    console.error('Cloudinary upload error:', error.message);
     const fileUrl = `/uploads/${req.file.filename}`;
     return res.status(200).json({
       success: true,
@@ -70,10 +77,11 @@ export const uploadMultipleFiles = async (req, res) => {
 
     const uploads = await Promise.all(
       req.files.map(async (file) => {
+        const isSvg = file.mimetype === 'image/svg+xml';
         try {
           const result = await cloudinary.uploader.upload(file.path, {
             folder: cloudinaryFolder,
-            resource_type: 'auto'
+            resource_type: isSvg ? 'raw' : 'auto'
           });
           if (fs.existsSync(file.path)) {
             fs.unlinkSync(file.path);
@@ -92,7 +100,8 @@ export const uploadMultipleFiles = async (req, res) => {
             filename: file.filename,
             originalname: file.originalname,
             size: file.size,
-            mimetype: file.mimetype
+            mimetype: file.mimetype,
+            fallback: true
           };
         }
       })
@@ -108,5 +117,20 @@ export const uploadMultipleFiles = async (req, res) => {
       message: 'Failed to upload files',
       error: error.message
     });
+  }
+};
+
+export const deleteFile = async (req, res) => {
+  const { public_id } = req.body;
+  if (!public_id) {
+    return res.status(400).json({ success: false, message: 'public_id is required.' });
+  }
+
+  try {
+    await cloudinary.uploader.destroy(public_id);
+    return res.status(200).json({ success: true, message: 'File deleted from Cloudinary.' });
+  } catch (error) {
+    console.error('Cloudinary destroy error:', error.message);
+    return res.status(200).json({ success: true, message: 'Cloudinary deletion attempted.' });
   }
 };

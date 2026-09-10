@@ -6,6 +6,18 @@ const websiteSettingsSchema = new mongoose.Schema(
       type: String,
       default: 'FIAUS Tech'
     },
+    logo: {
+      type: String,
+      default: '/assets/logo.jpeg'
+    },
+    logoPublicId: {
+      type: String,
+      default: ''
+    },
+    favicon: {
+      type: String,
+      default: ''
+    },
     descriptor: {
       type: String,
       default: 'Digital & AI Agency'
@@ -55,7 +67,7 @@ const websiteSettingsSchema = new mongoose.Schema(
     },
     regionsServed: {
       type: [String],
-      default: ['Saudi Arabia', 'Global']
+      default: ['Saudi Arabia', 'Bangladesh', 'Global']
     },
     analytics: {
       googleAnalyticsId: String,
@@ -66,11 +78,10 @@ const websiteSettingsSchema = new mongoose.Schema(
     seo: {
       defaultTitle: { type: String, default: 'FIAUS Tech | Digital & AI Agency — Innovate. Automate. Grow.' },
       defaultTitleAr: { type: String, default: 'فياوس تك | وكالة التحول الرقمي والذكاء الاصطناعي' },
-      defaultMetaDesc: { type: String, default: 'FIAUS Tech is a premier international Digital & AI Agency engineering high-impact web applications, intelligent AI automation, and scalable cloud solutions for clients in Saudi Arabia and worldwide.' },
+      defaultMetaDesc: { type: String, default: 'FIAUS Tech is a premier international Digital & AI Agency engineering high-impact web applications, intelligent AI automation, and scalable cloud solutions for clients in Saudi Arabia, Bangladesh, and worldwide.' },
       defaultMetaDescAr: { type: String, default: 'فياوس تك هي وكالة رقمية رائدة متخصصة في هندسة الويب وتطبيقات الذكاء الاصطناعي والأتمتة الذكية لخدمة الشركات في المملكة العربية السعودية وحول العالم.' },
       keywords: { type: [String], default: ['Digital Agency', 'AI Solutions', 'AI Automation', 'Web Development', 'Full-Stack Engineering', 'Saudi Arabia Tech Agency', 'Global Tech Agency'] }
     }
-
   },
   { timestamps: true }
 );

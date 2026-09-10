@@ -4,7 +4,8 @@ import {
   createProject,
   updateProject,
   deleteProject,
-  reorderProjects
+  reorderProjects,
+  uploadFile
 } from '../../services/api';
 import {
   Briefcase,
@@ -17,7 +18,9 @@ import {
   Github,
   Check,
   X,
-  Sparkles
+  Sparkles,
+  Upload,
+  Image
 } from 'lucide-react';
 
 export default function AdminProjectsPage() {
@@ -25,6 +28,7 @@ export default function AdminProjectsPage() {
   const [loading, setLoading] = useState(true);
   const [editingProject, setEditingProject] = useState(null);
   const [isNew, setIsNew] = useState(false);
+  const [uploadingCover, setUploadingCover] = useState(false);
 
   const loadProjects = async () => {
     setLoading(true);
@@ -73,6 +77,25 @@ export default function AdminProjectsPage() {
     }
   };
 
+  const handleCoverUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setUploadingCover(true);
+    try {
+      const res = await uploadFile(file, 'projects');
+      const coverUrl = res?.data?.url || res?.url || (res?.data && typeof res.data === 'string' ? res.data : null);
+      if (coverUrl) {
+        setEditingProject((prev) => ({ ...prev, coverImage: coverUrl }));
+      } else {
+        alert('Image uploaded but no URL was returned');
+      }
+    } catch (err) {
+      alert('Cover upload failed: ' + (err.response?.data?.message || err.message));
+    } finally {
+      setUploadingCover(false);
+    }
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     try {
@@ -85,7 +108,7 @@ export default function AdminProjectsPage() {
       setIsNew(false);
       loadProjects();
     } catch (err) {
-      alert('Save failed: ' + err.message);
+      alert('Save failed: ' + (err.response?.data?.message || err.message));
     }
   };
 
@@ -319,6 +342,50 @@ export default function AdminProjectsPage() {
                 </div>
               </div>
 
+              {/* Cover Image Upload & Preview */}
+              <div>
+                <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1.5">
+                  Project Cover Image (Cloudinary FIAUS/projects) *
+                </label>
+                <div className="flex items-center gap-4">
+                  <div className="w-24 h-16 rounded-xl overflow-hidden border-2 border-brand-500/30 bg-slate-100 dark:bg-navy-850 shrink-0">
+                    {editingProject.coverImage ? (
+                      <img
+                        src={editingProject.coverImage}
+                        alt="Preview"
+                        className="w-full h-full object-cover"
+                        onError={(e) => { e.target.src = '/assets/projects/p1/main.png'; }}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-slate-400">
+                        <Image className="w-6 h-6" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <label className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-brand-600 dark:text-brand-300 bg-brand-50 dark:bg-brand-950/70 border border-brand-200 dark:border-brand-800 cursor-pointer hover:bg-brand-100 transition-colors">
+                      <Upload className="w-3.5 h-3.5" />
+                      <span>{uploadingCover ? 'Uploading to Cloudinary...' : 'Upload Cover Image'}</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        disabled={uploadingCover}
+                        onChange={handleCoverUpload}
+                        className="hidden"
+                      />
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Or enter image URL"
+                      value={editingProject.coverImage || ''}
+                      onChange={(e) => setEditingProject({ ...editingProject, coverImage: e.target.value })}
+                      className="w-full px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850 text-xs"
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                   Short Description *
@@ -334,15 +401,83 @@ export default function AdminProjectsPage() {
 
               <div>
                 <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
-                  Cover Image Path / URL *
+                  Full Description / Overview
                 </label>
-                <input
-                  type="text"
-                  required
-                  value={editingProject.coverImage || ''}
-                  onChange={(e) => setEditingProject({ ...editingProject, coverImage: e.target.value })}
+                <textarea
+                  rows={4}
+                  value={editingProject.fullDescription || ''}
+                  onChange={(e) => setEditingProject({ ...editingProject, fullDescription: e.target.value })}
                   className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  placeholder="Detailed case study explanation..."
                 />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                    Technologies (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={Array.isArray(editingProject.technologies) ? editingProject.technologies.join(', ') : (editingProject.technologies || '')}
+                    onChange={(e) =>
+                      setEditingProject({
+                        ...editingProject,
+                        technologies: e.target.value.split(',').map((t) => t.trim()).filter(Boolean)
+                      })
+                    }
+                    placeholder="React, Node.js, Tailwind, AWS"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                    Key Features (comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    value={Array.isArray(editingProject.features) ? editingProject.features.join(', ') : (editingProject.features || '')}
+                    onChange={(e) =>
+                      setEditingProject({
+                        ...editingProject,
+                        features: e.target.value.split(',').map((t) => t.trim()).filter(Boolean)
+                      })
+                    }
+                    placeholder="Responsive Architecture, Realtime Sync, Fast Load"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
+                    Status
+                  </label>
+                  <select
+                    value={editingProject.status || 'published'}
+                    onChange={(e) => setEditingProject({ ...editingProject, status: e.target.value })}
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+                  >
+                    <option value="published">Published</option>
+                    <option value="draft">Draft</option>
+                    <option value="archived">Archived</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center gap-2 pt-5">
+                  <input
+                    type="checkbox"
+                    id="projFeatured"
+                    checked={editingProject.featured !== false}
+                    onChange={(e) => setEditingProject({ ...editingProject, featured: e.target.checked })}
+                    className="w-4 h-4 rounded text-brand-600"
+                  />
+                  <label htmlFor="projFeatured" className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                    Featured Showcase
+                  </label>
+                </div>
               </div>
 
               <div className="flex justify-end gap-2 pt-4 border-t border-slate-100 dark:border-slate-800">

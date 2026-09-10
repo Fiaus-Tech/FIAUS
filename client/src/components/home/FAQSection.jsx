@@ -20,14 +20,14 @@ export default function FAQSection() {
             {
               question: 'How does FIAUS Tech approach new client projects?',
               questionAr: 'كيف تبدأ فياوس تك العمل على المشاريع الجديدة؟',
-              answer: 'We begin with a strategic discovery phase to understand your business goals, target markets (e.g. Saudi Arabia or Global), and technical requirements. We then craft a tailored architecture, prototype the design, engineer the solution, and deploy with comprehensive testing and ongoing support.',
+              answer: 'We begin with a strategic discovery phase to understand your business goals, target markets (e.g. Bangladesh, Saudi Arabia, or Global), and technical requirements. We then craft a tailored architecture, prototype the design, engineer the solution, and deploy with comprehensive testing and ongoing support.',
               answerAr: 'نبدأ بجلسة استكشاف استراتيجية لفهم أهداف مشروعك والسوق المستهدف، ثم نضع المخطط التقني ونبني الواجهات والأنظمة مع إجراء اختبارات أداء دقيقة قبل الإطلاق.'
             },
             {
               question: 'What regions and clients do you serve?',
               questionAr: 'ما هي المناطق والأسواق التي تخدمونها؟',
-              answer: 'FIAUS Tech operates internationally with core focus on clients in Saudi Arabia, the GCC, and worldwide. Our infrastructure, bilingual capabilities (English & Arabic RTL), and flexible engagement models allow us to collaborate smoothly across time zones.',
-              answerAr: 'نقدم خدماتنا دولياً مع تركيز رئيسي على العملاء في المملكة العربية السعودية ودول الخليج وحول العالم، مع دعم كامل للغتين العربية والإنجليزية.'
+              answer: 'FIAUS Tech operates internationally with core focus on clients in Bangladesh, Saudi Arabia, the GCC, and worldwide. Our infrastructure, bilingual capabilities (English & Arabic RTL), and flexible engagement models allow us to collaborate smoothly across time zones.',
+              answerAr: 'نقدم خدماتنا دولياً مع تركيز رئيسي على العملاء في المملكة العربية السعودية وبنغلاديش ودول الخليج وحول العالم، مع دعم كامل للغتين العربية والإنجليزية.'
             },
 
             {

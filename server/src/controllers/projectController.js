@@ -74,14 +74,17 @@ export const createProject = async (req, res, next) => {
 
 export const updateProject = async (req, res, next) => {
   try {
+    const { id } = req.params;
     if (isMongoConnected()) {
-      const project = await Project.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+      const isObjectId = mongoose.Types.ObjectId.isValid(id);
+      const query = isObjectId ? { _id: id } : { slug: id };
+      const project = await Project.findOneAndUpdate(query, { $set: req.body }, { new: true, runValidators: true });
       if (!project) return res.status(404).json({ success: false, message: 'Project not found.' });
       return res.status(200).json({ success: true, data: project });
     }
 
     const projects = store.getProjects();
-    const index = projects.findIndex((p) => p._id === req.params.id);
+    const index = projects.findIndex((p) => p._id === id || p.slug === id);
     if (index === -1) return res.status(404).json({ success: false, message: 'Project not found.' });
     projects[index] = { ...projects[index], ...req.body, updatedAt: new Date().toISOString() };
     store.saveProjects(projects);
@@ -93,14 +96,17 @@ export const updateProject = async (req, res, next) => {
 
 export const deleteProject = async (req, res, next) => {
   try {
+    const { id } = req.params;
     if (isMongoConnected()) {
-      const project = await Project.findByIdAndDelete(req.params.id);
+      const isObjectId = mongoose.Types.ObjectId.isValid(id);
+      const query = isObjectId ? { _id: id } : { slug: id };
+      const project = await Project.findOneAndDelete(query);
       if (!project) return res.status(404).json({ success: false, message: 'Project not found.' });
       return res.status(200).json({ success: true, message: 'Project successfully deleted.' });
     }
 
     let projects = store.getProjects();
-    projects = projects.filter((p) => p._id !== req.params.id);
+    projects = projects.filter((p) => p._id !== id && p.slug !== id);
     store.saveProjects(projects);
     res.status(200).json({ success: true, message: 'Project successfully deleted.' });
   } catch (error) {

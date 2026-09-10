@@ -90,7 +90,7 @@ export const fetchDashboardMetrics = () => api.get('/settings/metrics');
 export const loginAdmin = (credentials) => api.post('/auth/login', credentials);
 export const fetchAdminProfile = () => api.get('/auth/profile');
 
-// File Upload (with Cloudinary dedicated folder support)
+// File Upload & Asset Management (with Cloudinary dedicated folder support)
 export const uploadFile = (file, folder = 'team') => {
   const formData = new FormData();
   formData.append('file', file);
@@ -99,5 +99,7 @@ export const uploadFile = (file, folder = 'team') => {
     headers: { 'Content-Type': 'multipart/form-data' }
   });
 };
+
+export const deleteUploadedFile = (public_id) => api.delete('/upload/delete', { data: { public_id } });
 
 export default api;

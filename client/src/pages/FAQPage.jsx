@@ -32,10 +32,8 @@ const starterFAQs = [
   {
     _id: 'faq_3',
     question: 'What regions do you actively serve, and how do you handle international collaboration?',
-    questionAr: 'ما هي المناطق التي تخدمونها وكيف يتم التنسيق مع العملاء دولياً؟',
-    answer: 'We serve forward-thinking enterprises in Saudi Arabia, the GCC, and worldwide. Our systems are built bilingual (English and native Arabic RTL), and our engineering team coordinates across time zones via scheduled weekly video checkpoints, dedicated WhatsApp groups, and Telegram.',
-    answerAr: 'نخدم الشركات الرائدة في المملكة العربية السعودية، دول الخليج، وحول العالم. منصاتنا مبنية بدعم ثنائي اللغة (العربية والإنجليزية)، ويتواصل فريقنا عبر مجموعات عمل مخصصة على واتساب وتيليجرام واجتماعات أسبوعية منتظمة.',
-
+    answer: 'We serve forward-thinking enterprises in Saudi Arabia, Bangladesh, the GCC, and worldwide. Our systems are built bilingual (English and native Arabic RTL), and our engineering team coordinates across time zones via scheduled weekly video checkpoints, dedicated WhatsApp groups, and Telegram.',
+    answerAr: 'نخدم الشركات الرائدة في المملكة العربية السعودية، بنغلاديش، دول الخليج، وحول العالم. منصاتنا مبنية بدعم ثنائي اللغة (العربية والإنجليزية)، ويتواصل فريقنا عبر مجموعات عمل مخصصة على واتساب وتيليجرام واجتماعات أسبوعية منتظمة.',
     category: 'International',
     categoryAr: 'النطاق الدولي'
   },

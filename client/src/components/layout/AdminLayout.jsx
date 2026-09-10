@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
+import { useSettings } from '../../context/SettingsContext';
 import {
   LayoutDashboard,
   Users,
@@ -21,6 +22,7 @@ import {
 export default function AdminLayout() {
   const { admin, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const { settings } = useSettings();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -48,9 +50,12 @@ export default function AdminLayout() {
           <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <Link to="/admin" className="flex items-center gap-3">
               <img
-                src="/assets/logo.jpeg"
+                src={settings?.logo || '/assets/logo.jpeg'}
                 alt="FIAUS Tech"
                 className="w-8 h-8 rounded-lg object-cover ring-1 ring-slate-200 dark:ring-slate-700"
+                onError={(e) => {
+                  e.target.src = '/assets/logo.jpeg';
+                }}
               />
               <div>
                 <span className="font-bold text-sm tracking-tight block">FIAUS TECH</span>

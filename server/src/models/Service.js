@@ -20,17 +20,12 @@ const serviceSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      required: true,
-      enum: [
-        'Web & App Engineering',
-        'AI & Intelligent Automation',
-        'Growth & Performance Marketing',
-        'UI/UX & Brand Design',
-        'Cloud & SaaS Architecture'
-      ]
+      default: 'Web & App Engineering',
+      trim: true
     },
     categoryAr: {
-      type: String
+      type: String,
+      trim: true
     },
     icon: {
       type: String,
