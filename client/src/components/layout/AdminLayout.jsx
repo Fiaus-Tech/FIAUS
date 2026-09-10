@@ -50,11 +50,11 @@ export default function AdminLayout() {
           <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <Link to="/admin" className="flex items-center gap-3">
               <img
-                src={settings?.logo || '/assets/logo.jpeg'}
+                src={settings?.logo || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg'}
                 alt="FIAUS Tech"
                 className="w-8 h-8 rounded-lg object-cover ring-1 ring-slate-200 dark:ring-slate-700"
                 onError={(e) => {
-                  e.target.src = '/assets/logo.jpeg';
+                  e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg';
                 }}
               />
               <div>

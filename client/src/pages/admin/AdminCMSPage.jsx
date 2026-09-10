@@ -365,7 +365,7 @@ export default function AdminCMSPage() {
                   category: 'AI & Automation',
                   categoryAr: 'الذكاء الاصطناعي والأتمتة',
                   tags: ['AI', 'Engineering'],
-                  coverImage: '/assets/projects/p1/main.png',
+                  coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png',
                   author: { name: 'FIAUS Tech Lab', role: 'Technical Team' },
                   excerpt: '',
                   excerptAr: '',
@@ -499,11 +499,11 @@ export default function AdminCMSPage() {
                     <div className="flex items-start justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <img
-                          src={m.photo || '/assets/team/founder.jpeg'}
+                          src={m.photo || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg'}
                           alt={m.name}
                           className="w-12 h-12 rounded-xl object-cover border border-slate-200 dark:border-slate-700 shadow-xs shrink-0"
                           onError={(e) => {
-                            e.target.src = '/assets/team/founder.jpeg';
+                            e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg';
                           }}
                         />
                         <div>
@@ -792,7 +792,7 @@ export default function AdminCMSPage() {
                   <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Cover Image URL</label>
                   <input
                     type="text"
-                    value={editingBlog.coverImage || '/assets/projects/p1/main.png'}
+                    value={editingBlog.coverImage || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png'}
                     onChange={(e) => setEditingBlog({ ...editingBlog, coverImage: e.target.value })}
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
                   />
@@ -879,7 +879,7 @@ export default function AdminCMSPage() {
                         src={editingMember.photo}
                         alt="Preview"
                         className="w-full h-full object-cover"
-                        onError={(e) => { e.target.src = '/assets/team/founder.jpeg'; }}
+                        onError={(e) => { e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg'; }}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-400">

@@ -50,11 +50,11 @@ export default function Navbar({ onOpenStartProject }) {
           <Link to="/" className="flex items-center gap-3 group focus:outline-none">
             <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-md ring-1 ring-slate-200 dark:ring-slate-700/60 bg-white group-hover:scale-105 transition-transform duration-200">
               <img
-                src={settings?.logo || '/assets/logo.jpeg'}
+                src={settings?.logo || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg'}
                 alt="FIAUS Tech Logo"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.target.src = '/assets/logo.jpeg';
+                  e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg';
                 }}
               />
             </div>

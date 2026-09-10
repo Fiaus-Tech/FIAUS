@@ -1,9 +1,9 @@
-﻿import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { fetchSettings, updateSettings as apiUpdateSettings } from '../services/api';
 
 const defaultSettings = {
   companyName: 'FIAUS Tech',
-  logo: '/assets/logo.jpeg',
+  logo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg',
   logoPublicId: '',
   favicon: '',
   descriptor: 'Digital & AI Agency',

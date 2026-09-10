@@ -8,7 +8,7 @@ const websiteSettingsSchema = new mongoose.Schema(
     },
     logo: {
       type: String,
-      default: '/assets/logo.jpeg'
+      default: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg'
     },
     logoPublicId: {
       type: String,

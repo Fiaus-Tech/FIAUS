@@ -140,7 +140,7 @@ export default function AdminProjectsPage() {
               fullDescriptionAr: '',
               technologies: ['React', 'Node.js', 'Tailwind CSS'],
               features: ['High Performance', 'Responsive Architecture'],
-              coverImage: '/assets/projects/p1/main.png',
+              coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png',
               githubUrl: '',
               liveUrl: '',
               featured: true,
@@ -354,7 +354,7 @@ export default function AdminProjectsPage() {
                         src={editingProject.coverImage}
                         alt="Preview"
                         className="w-full h-full object-cover"
-                        onError={(e) => { e.target.src = '/assets/projects/p1/main.png'; }}
+                        onError={(e) => { e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png'; }}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-slate-400">

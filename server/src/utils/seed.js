@@ -45,13 +45,13 @@ const realProjects = [
     ],
     challenge: 'Deliver an executive-level web platform that effectively communicates company strength, scale, and operational capabilities to regional and international partners.',
     solution: 'Designed a sophisticated, modern UI with smooth micro-interactions, responsive typography, and an intuitive content hierarchy.',
-    coverImage: '/assets/projects/p1/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png',
     screenshots: [
-      { title: 'Corporate Overview', url: '/assets/projects/p1/main.png' },
-      { title: 'About & Vision', url: '/assets/projects/p1/about.png' },
-      { title: 'Client Capabilities', url: '/assets/projects/p1/client.png' },
-      { title: 'Headquarters & Facilities', url: '/assets/projects/p1/hq.png' },
-      { title: 'Projects Portfolio', url: '/assets/projects/p1/project.png' }
+      { title: 'Corporate Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png' },
+      { title: 'About & Vision', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044878/FIAUS/projects/p1/about.png' },
+      { title: 'Client Capabilities', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044879/FIAUS/projects/p1/client.png' },
+      { title: 'Headquarters & Facilities', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044881/FIAUS/projects/p1/hq.png' },
+      { title: 'Projects Portfolio', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044887/FIAUS/projects/p1/project.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/ACC-EST',
     liveUrl: 'https://acc-est.vercel.app/',
@@ -87,13 +87,13 @@ const realProjects = [
     ],
     challenge: 'Build a lightning-fast, visually compelling digital shopping experience with seamless theme transitions and end-to-end subscriber workflows.',
     solution: 'Engineered a modular React frontend powered by an optimized Express/MongoDB backend with responsive state management.',
-    coverImage: '/assets/projects/p2/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png',
     screenshots: [
-      { title: 'Storefront Experience', url: '/assets/projects/p2/main.png' },
-      { title: 'Administrative Backend', url: '/assets/projects/p2/backend.png' },
-      { title: 'Home & Featured Catalog', url: '/assets/projects/p2/home.png' },
-      { title: 'Light Mode Interface', url: '/assets/projects/p2/light-mode.png' },
-      { title: 'Subscribers & Audience Manager', url: '/assets/projects/p2/subscribers.png' }
+      { title: 'Storefront Experience', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png' },
+      { title: 'Administrative Backend', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044888/FIAUS/projects/p2/backend.png' },
+      { title: 'Home & Featured Catalog', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044889/FIAUS/projects/p2/home.png' },
+      { title: 'Light Mode Interface', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044892/FIAUS/projects/p2/light-mode.png' },
+      { title: 'Subscribers & Audience Manager', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044901/FIAUS/projects/p2/subscribers.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/rabiora-ecommerce',
     liveUrl: 'https://rabiora-ecommerce.vercel.app/',
@@ -129,13 +129,13 @@ const realProjects = [
     ],
     challenge: 'Provide users with a seamless bridge between a high-converting web presence and browser extension installation with live security metrics.',
     solution: 'Designed an ultra-clean tech interface highlighting protection statistics, intuitive step-by-step setup, and transparent security controls.',
-    coverImage: '/assets/projects/p3/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png',
     screenshots: [
-      { title: 'Security Overview', url: '/assets/projects/p3/main.png' },
-      { title: 'Live Telemetry Dashboard', url: '/assets/projects/p3/dashboard.png' },
-      { title: 'Extension Installation Flow', url: '/assets/projects/p3/install-extension.png' },
-      { title: 'Live Ad Blocking In Action', url: '/assets/projects/p3/live-ads-blocking.png' },
-      { title: 'Protection Settings', url: '/assets/projects/p3/settings.png' }
+      { title: 'Security Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png' },
+      { title: 'Live Telemetry Dashboard', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044902/FIAUS/projects/p3/dashboard.png' },
+      { title: 'Extension Installation Flow', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044904/FIAUS/projects/p3/install-extension.png' },
+      { title: 'Live Ad Blocking In Action', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044906/FIAUS/projects/p3/live-ads-blocking.png' },
+      { title: 'Protection Settings', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044910/FIAUS/projects/p3/settings.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/TECH-GURD',
     liveUrl: 'https://tech-gurd.vercel.app/',
@@ -171,13 +171,13 @@ const realProjects = [
     ],
     challenge: 'Process and render high-frequency real-time public telemetry data with zero UI lag for thousands of concurrent users.',
     solution: 'Implemented lightweight data models, efficient chart visualizations, and regional search filters for instant feedback.',
-    coverImage: '/assets/projects/p4/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044913/FIAUS/projects/p4/main.png',
     screenshots: [
-      { title: 'National Grid Overview', url: '/assets/projects/p4/main.png' },
-      { title: 'National Power Statistics', url: '/assets/projects/p4/national-stats.png' },
-      { title: 'All Area Real-Time Status', url: '/assets/projects/p4/all-area.png' },
-      { title: 'Historical Power Outage Logs', url: '/assets/projects/p4/power-history.png' },
-      { title: 'About & Methodology', url: '/assets/projects/p4/about.png' }
+      { title: 'National Grid Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044913/FIAUS/projects/p4/main.png' },
+      { title: 'National Power Statistics', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044914/FIAUS/projects/p4/national-stats.png' },
+      { title: 'All Area Real-Time Status', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044911/FIAUS/projects/p4/all-area.png' },
+      { title: 'Historical Power Outage Logs', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044915/FIAUS/projects/p4/power-history.png' },
+      { title: 'About & Methodology', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044911/FIAUS/projects/p4/about.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/Current-Ache-',
     liveUrl: 'https://current-ache-iota.vercel.app/',
@@ -213,13 +213,13 @@ const realProjects = [
     ],
     challenge: 'Translate an upscale sensory hospitality brand into a refined, immersive digital experience.',
     solution: 'Constructed an editorial aesthetic with warm minimalist typography, smooth micro-interactions, and visual storytelling.',
-    coverImage: '/assets/projects/p5/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044922/FIAUS/projects/p5/main.png',
     screenshots: [
-      { title: 'Artisanal Brand Showcase', url: '/assets/projects/p5/main.png' },
-      { title: 'Specialty Coffee Menu', url: '/assets/projects/p5/menu.png' },
-      { title: 'Atmospheric Visual Gallery', url: '/assets/projects/p5/gallery.png' },
-      { title: 'Brand Heritage & About', url: '/assets/projects/p5/about.png' },
-      { title: 'Why Choose AMA Specialty Coffee', url: '/assets/projects/p5/why-choose-us.png' }
+      { title: 'Artisanal Brand Showcase', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044922/FIAUS/projects/p5/main.png' },
+      { title: 'Specialty Coffee Menu', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044923/FIAUS/projects/p5/menu.png' },
+      { title: 'Atmospheric Visual Gallery', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044920/FIAUS/projects/p5/gallery.png' },
+      { title: 'Brand Heritage & About', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044918/FIAUS/projects/p5/about.png' },
+      { title: 'Why Choose AMA Specialty Coffee', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044924/FIAUS/projects/p5/why-choose-us.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/ama-specialty-coffee',
     liveUrl: '', // No fake URL

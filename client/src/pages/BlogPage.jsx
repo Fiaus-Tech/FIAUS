@@ -13,7 +13,7 @@ const starterBlogPosts = [
     category: 'AI & Automation',
     categoryAr: 'الذكاء الاصطناعي والأتمتة',
     tags: ['AI Agents', 'Automation', 'Productivity', 'Enterprise'],
-    coverImage: '/assets/projects/p3/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png',
     author: {
       name: 'FIAUS Tech AI Lab',
       role: 'Applied AI & Automation Engineers'
@@ -31,7 +31,7 @@ const starterBlogPosts = [
     category: 'Web Engineering',
     categoryAr: 'هندسة الويب والتطبيقات',
     tags: ['React', 'Next.js', 'Core Web Vitals', 'Performance'],
-    coverImage: '/assets/projects/p1/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png',
     author: {
       name: 'FIAUS Tech Engineering',
       role: 'Full-Stack Technical Architects'
@@ -49,7 +49,7 @@ const starterBlogPosts = [
     category: 'AI & Automation',
     categoryAr: 'الذكاء الاصطناعي والأتمتة',
     tags: ['WhatsApp API', 'Chatbots', 'Meta Cloud API', 'Conversion'],
-    coverImage: '/assets/projects/p2/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png',
     author: {
       name: 'FIAUS Tech Digital Strategy',
       role: 'Growth & Automation Consultants'
@@ -173,7 +173,7 @@ export default function BlogPage({ onOpenStartProject }) {
                     {/* Cover Image */}
                     <div className="aspect-[16/9] bg-slate-900 overflow-hidden relative">
                       <img
-                        src={post.coverImage || '/assets/projects/p1/main.png'}
+                        src={post.coverImage || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png'}
                         alt={title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"

@@ -28,13 +28,13 @@ const fallbackProjects = [
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion', 'Node.js'],
     features: ['Dynamic Project Showcase', 'Bilingual Architecture', 'Interactive Corporate Timeline', 'Client Engagement Portal', 'Optimized Core Web Vitals'],
     featuresAr: ['عرض تفاعلي للمشاريع', 'بنية ثنائية اللغة', 'جدول زمني تفاعلي', 'بوابة تفاعل العملاء', 'أداء وسرعة قياسية'],
-    coverImage: '/assets/projects/p1/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png',
     screenshots: [
-      { title: 'Corporate Overview', url: '/assets/projects/p1/main.png' },
-      { title: 'About & Vision', url: '/assets/projects/p1/about.png' },
-      { title: 'Client Capabilities', url: '/assets/projects/p1/client.png' },
-      { title: 'Headquarters & Facilities', url: '/assets/projects/p1/hq.png' },
-      { title: 'Projects Portfolio', url: '/assets/projects/p1/project.png' }
+      { title: 'Corporate Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png' },
+      { title: 'About & Vision', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044878/FIAUS/projects/p1/about.png' },
+      { title: 'Client Capabilities', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044879/FIAUS/projects/p1/client.png' },
+      { title: 'Headquarters & Facilities', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044881/FIAUS/projects/p1/hq.png' },
+      { title: 'Projects Portfolio', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044887/FIAUS/projects/p1/project.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/ACC-EST',
     liveUrl: 'https://acc-est.vercel.app/',
@@ -54,13 +54,13 @@ const fallbackProjects = [
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS', 'REST API'],
     features: ['Multi-Theme Support (Light & Dark)', 'Customer Subscriber Workflow', 'Administrative Product Management', 'Responsive Checkout Flow', 'Real-Time Inventory Updates'],
     featuresAr: ['دعم الوضعين الفاتح والداكن', 'إدارة المشتركين والنشرات', 'لوحة إدارة المنتجات', 'تجربة دفع سلسة ومتجاوبة', 'تحديثات المخزون الفورية'],
-    coverImage: '/assets/projects/p2/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png',
     screenshots: [
-      { title: 'Storefront Experience', url: '/assets/projects/p2/main.png' },
-      { title: 'Administrative Backend', url: '/assets/projects/p2/backend.png' },
-      { title: 'Home & Featured Catalog', url: '/assets/projects/p2/home.png' },
-      { title: 'Light Mode Interface', url: '/assets/projects/p2/light-mode.png' },
-      { title: 'Subscribers & Audience Manager', url: '/assets/projects/p2/subscribers.png' }
+      { title: 'Storefront Experience', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png' },
+      { title: 'Administrative Backend', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044888/FIAUS/projects/p2/backend.png' },
+      { title: 'Home & Featured Catalog', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044889/FIAUS/projects/p2/home.png' },
+      { title: 'Light Mode Interface', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044892/FIAUS/projects/p2/light-mode.png' },
+      { title: 'Subscribers & Audience Manager', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044901/FIAUS/projects/p2/subscribers.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/rabiora-ecommerce',
     liveUrl: 'https://rabiora-ecommerce.vercel.app/',
@@ -80,13 +80,13 @@ const fallbackProjects = [
     technologies: ['TypeScript', 'React', 'Browser Extension APIs', 'WebSockets', 'Tailwind CSS'],
     features: ['Live Telemetry & Threat Blocking', 'Browser Extension Distribution Hub', 'Customizable Filter Lists', 'Security Dashboard Metrics', 'Low Latency Rules Engine'],
     featuresAr: ['حجب التهديدات والإعلانات في الوقت الحقيقي', 'مركز توزيع وتثبيت ملحق المتصفح', 'قوائم تصفية مخصصة', 'مؤشرات الأمان ولوحة التحكم', 'محرك فحص سريع ومنخفض الاستهلاك'],
-    coverImage: '/assets/projects/p3/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png',
     screenshots: [
-      { title: 'Security Overview', url: '/assets/projects/p3/main.png' },
-      { title: 'Live Telemetry Dashboard', url: '/assets/projects/p3/dashboard.png' },
-      { title: 'Extension Installation Flow', url: '/assets/projects/p3/install-extension.png' },
-      { title: 'Live Ad Blocking In Action', url: '/assets/projects/p3/live-ads-blocking.png' },
-      { title: 'Protection Settings', url: '/assets/projects/p3/settings.png' }
+      { title: 'Security Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png' },
+      { title: 'Live Telemetry Dashboard', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044902/FIAUS/projects/p3/dashboard.png' },
+      { title: 'Extension Installation Flow', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044904/FIAUS/projects/p3/install-extension.png' },
+      { title: 'Live Ad Blocking In Action', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044906/FIAUS/projects/p3/live-ads-blocking.png' },
+      { title: 'Protection Settings', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044910/FIAUS/projects/p3/settings.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/TECH-GURD',
     liveUrl: 'https://tech-gurd.vercel.app/',
@@ -106,13 +106,13 @@ const fallbackProjects = [
     technologies: ['React', 'Vite', 'Node.js', 'Chart.js / Data Viz', 'Tailwind CSS', 'API Integration'],
     features: ['National Power Capacity Analytics', 'All-Area Real-Time Status Grid', 'Historical Outage & Restoration Logs', 'Bilingual Public Interface', 'High-Concurrence Caching'],
     featuresAr: ['تحليلات سعة شبكة الطاقة الوطنية', 'شبكة متابعة حالة جميع المناطق الحية', 'سجلات انقطاع واستعادة التيار التاريخية', 'واجهة مستخدم ثنائية اللغة', 'نظام تخزين مؤقت للتعامل مع آلاف الزوار'],
-    coverImage: '/assets/projects/p4/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044913/FIAUS/projects/p4/main.png',
     screenshots: [
-      { title: 'National Grid Overview', url: '/assets/projects/p4/main.png' },
-      { title: 'National Power Statistics', url: '/assets/projects/p4/national-stats.png' },
-      { title: 'All Area Real-Time Status', url: '/assets/projects/p4/all-area.png' },
-      { title: 'Historical Power Outage Logs', url: '/assets/projects/p4/power-history.png' },
-      { title: 'About & Methodology', url: '/assets/projects/p4/about.png' }
+      { title: 'National Grid Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044913/FIAUS/projects/p4/main.png' },
+      { title: 'National Power Statistics', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044914/FIAUS/projects/p4/national-stats.png' },
+      { title: 'All Area Real-Time Status', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044911/FIAUS/projects/p4/all-area.png' },
+      { title: 'Historical Power Outage Logs', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044915/FIAUS/projects/p4/power-history.png' },
+      { title: 'About & Methodology', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044911/FIAUS/projects/p4/about.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/Current-Ache-',
     liveUrl: 'https://current-ache-iota.vercel.app/',
@@ -132,13 +132,13 @@ const fallbackProjects = [
     technologies: ['React', 'Tailwind CSS', 'Framer Motion', 'Responsive UI Design'],
     features: ['Interactive Specialty Coffee Menu', 'High-Resolution Visual Gallery', 'Artisanal Origin Storytelling', 'Why Choose Us Value Pillars', 'Fluid Mobile Experience'],
     featuresAr: ['قائمة تفاعلية للمشروبات والقهوة المختصة', 'معرض صور عالي الدقة', 'سرد قصة حبوب القهوة والمنشأ', 'ركائز القيمة والجودة', 'تصميم متجاوب بالكامل مع الجوال'],
-    coverImage: '/assets/projects/p5/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044922/FIAUS/projects/p5/main.png',
     screenshots: [
-      { title: 'Artisanal Brand Showcase', url: '/assets/projects/p5/main.png' },
-      { title: 'Specialty Coffee Menu', url: '/assets/projects/p5/menu.png' },
-      { title: 'Atmospheric Visual Gallery', url: '/assets/projects/p5/gallery.png' },
-      { title: 'Brand Heritage & About', url: '/assets/projects/p5/about.png' },
-      { title: 'Why Choose AMA Specialty Coffee', url: '/assets/projects/p5/why-choose-us.png' }
+      { title: 'Artisanal Brand Showcase', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044922/FIAUS/projects/p5/main.png' },
+      { title: 'Specialty Coffee Menu', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044923/FIAUS/projects/p5/menu.png' },
+      { title: 'Atmospheric Visual Gallery', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044920/FIAUS/projects/p5/gallery.png' },
+      { title: 'Brand Heritage & About', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044918/FIAUS/projects/p5/about.png' },
+      { title: 'Why Choose AMA Specialty Coffee', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044924/FIAUS/projects/p5/why-choose-us.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/ama-specialty-coffee',
     liveUrl: '',

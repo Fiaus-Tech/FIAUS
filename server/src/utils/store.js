@@ -45,13 +45,13 @@ export const initialProjects = [
     ],
     challenge: 'Transition legacy presentation into a modern, lightning-fast digital asset that instills institutional credibility.',
     solution: 'Engineered a modern component-driven React architecture with custom Tailwind tokens and smooth page transitions.',
-    coverImage: '/assets/projects/p1/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png',
     screenshots: [
-      { title: 'Corporate Overview', url: '/assets/projects/p1/main.png' },
-      { title: 'About & Vision', url: '/assets/projects/p1/about.png' },
-      { title: 'Client Capabilities', url: '/assets/projects/p1/client.png' },
-      { title: 'Headquarters & Facilities', url: '/assets/projects/p1/hq.png' },
-      { title: 'Projects Portfolio', url: '/assets/projects/p1/project.png' }
+      { title: 'Corporate Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png' },
+      { title: 'About & Vision', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044878/FIAUS/projects/p1/about.png' },
+      { title: 'Client Capabilities', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044879/FIAUS/projects/p1/client.png' },
+      { title: 'Headquarters & Facilities', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044881/FIAUS/projects/p1/hq.png' },
+      { title: 'Projects Portfolio', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044887/FIAUS/projects/p1/project.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/ACC-EST',
     liveUrl: 'https://acc-est.vercel.app/',
@@ -89,13 +89,13 @@ export const initialProjects = [
     ],
     challenge: 'Deliver zero-lag catalog rendering alongside administrative content controls in a unified stack.',
     solution: 'Built modular Express REST APIs backed by MongoDB with a responsive Tailwind React client.',
-    coverImage: '/assets/projects/p2/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png',
     screenshots: [
-      { title: 'Storefront Experience', url: '/assets/projects/p2/main.png' },
-      { title: 'Administrative Backend', url: '/assets/projects/p2/backend.png' },
-      { title: 'Home & Featured Catalog', url: '/assets/projects/p2/home.png' },
-      { title: 'Light Mode Interface', url: '/assets/projects/p2/light-mode.png' },
-      { title: 'Subscribers & Audience Manager', url: '/assets/projects/p2/subscribers.png' }
+      { title: 'Storefront Experience', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png' },
+      { title: 'Administrative Backend', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044888/FIAUS/projects/p2/backend.png' },
+      { title: 'Home & Featured Catalog', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044889/FIAUS/projects/p2/home.png' },
+      { title: 'Light Mode Interface', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044892/FIAUS/projects/p2/light-mode.png' },
+      { title: 'Subscribers & Audience Manager', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044901/FIAUS/projects/p2/subscribers.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/rabiora-ecommerce',
     liveUrl: 'https://rabiora-ecommerce.vercel.app/',
@@ -133,13 +133,13 @@ export const initialProjects = [
     ],
     challenge: 'Visualizing thousands of real-time packet interceptions without browser performance degradation.',
     solution: 'Engineered lightweight WebSocket streams and optimized Canvas telemetry charts.',
-    coverImage: '/assets/projects/p3/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png',
     screenshots: [
-      { title: 'Security Overview', url: '/assets/projects/p3/main.png' },
-      { title: 'Live Telemetry Dashboard', url: '/assets/projects/p3/dashboard.png' },
-      { title: 'Extension Installation Flow', url: '/assets/projects/p3/install-extension.png' },
-      { title: 'Live Ad Blocking In Action', url: '/assets/projects/p3/live-ads-blocking.png' },
-      { title: 'Protection Settings', url: '/assets/projects/p3/settings.png' }
+      { title: 'Security Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png' },
+      { title: 'Live Telemetry Dashboard', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044902/FIAUS/projects/p3/dashboard.png' },
+      { title: 'Extension Installation Flow', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044904/FIAUS/projects/p3/install-extension.png' },
+      { title: 'Live Ad Blocking In Action', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044906/FIAUS/projects/p3/live-ads-blocking.png' },
+      { title: 'Protection Settings', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044910/FIAUS/projects/p3/settings.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/TECH-GURD',
     liveUrl: 'https://tech-gurd.vercel.app/',
@@ -177,13 +177,13 @@ export const initialProjects = [
     ],
     challenge: 'Handling massive spike traffic during regional power fluctuations while keeping telemetry real-time.',
     solution: 'Designed an aggressive edge-caching layer and memory-optimized state management.',
-    coverImage: '/assets/projects/p4/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044913/FIAUS/projects/p4/main.png',
     screenshots: [
-      { title: 'National Grid Overview', url: '/assets/projects/p4/main.png' },
-      { title: 'National Power Statistics', url: '/assets/projects/p4/national-stats.png' },
-      { title: 'All Area Real-Time Status', url: '/assets/projects/p4/all-area.png' },
-      { title: 'Historical Power Outage Logs', url: '/assets/projects/p4/power-history.png' },
-      { title: 'About & Methodology', url: '/assets/projects/p4/about.png' }
+      { title: 'National Grid Overview', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044913/FIAUS/projects/p4/main.png' },
+      { title: 'National Power Statistics', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044914/FIAUS/projects/p4/national-stats.png' },
+      { title: 'All Area Real-Time Status', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044911/FIAUS/projects/p4/all-area.png' },
+      { title: 'Historical Power Outage Logs', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044915/FIAUS/projects/p4/power-history.png' },
+      { title: 'About & Methodology', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044911/FIAUS/projects/p4/about.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/Current-Ache-',
     liveUrl: 'https://current-ache-iota.vercel.app/',
@@ -221,13 +221,13 @@ export const initialProjects = [
     ],
     challenge: 'Translate an upscale sensory hospitality brand into a refined, immersive digital experience.',
     solution: 'Constructed an editorial aesthetic with warm minimalist typography, smooth micro-interactions, and visual storytelling.',
-    coverImage: '/assets/projects/p5/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044922/FIAUS/projects/p5/main.png',
     screenshots: [
-      { title: 'Artisanal Brand Showcase', url: '/assets/projects/p5/main.png' },
-      { title: 'Specialty Coffee Menu', url: '/assets/projects/p5/menu.png' },
-      { title: 'Atmospheric Visual Gallery', url: '/assets/projects/p5/gallery.png' },
-      { title: 'Brand Heritage & About', url: '/assets/projects/p5/about.png' },
-      { title: 'Why Choose AMA Specialty Coffee', url: '/assets/projects/p5/why-choose-us.png' }
+      { title: 'Artisanal Brand Showcase', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044922/FIAUS/projects/p5/main.png' },
+      { title: 'Specialty Coffee Menu', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044923/FIAUS/projects/p5/menu.png' },
+      { title: 'Atmospheric Visual Gallery', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044920/FIAUS/projects/p5/gallery.png' },
+      { title: 'Brand Heritage & About', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044918/FIAUS/projects/p5/about.png' },
+      { title: 'Why Choose AMA Specialty Coffee', url: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044924/FIAUS/projects/p5/why-choose-us.png' }
     ],
     githubUrl: 'https://github.com/fahad1420/ama-specialty-coffee',
     liveUrl: '', // No fake URL
@@ -325,7 +325,7 @@ export const initialBlogPosts = [
     category: 'AI & Automation',
     categoryAr: 'الذكاء الاصطناعي والأتمتة',
     tags: ['AI Agents', 'Automation', 'Productivity', 'Enterprise'],
-    coverImage: '/assets/projects/p3/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044909/FIAUS/projects/p3/main.png',
     author: {
       name: 'FIAUS Tech AI Lab',
       role: 'Applied AI & Automation Engineers'
@@ -374,7 +374,7 @@ Implementing AI automation is not about replacing human creativity—it is about
     category: 'Web Engineering',
     categoryAr: 'هندسة الويب والتطبيقات',
     tags: ['React', 'Next.js', 'Core Web Vitals', 'Performance'],
-    coverImage: '/assets/projects/p1/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044884/FIAUS/projects/p1/main.png',
     author: {
       name: 'FIAUS Tech Engineering',
       role: 'Full-Stack Technical Architects'
@@ -419,7 +419,7 @@ Custom full-stack architectures enforce strict CORS headers, input sanitization,
     category: 'AI & Automation',
     categoryAr: 'الذكاء الاصطناعي والأتمتة',
     tags: ['WhatsApp API', 'Chatbots', 'Meta Cloud API', 'Conversion'],
-    coverImage: '/assets/projects/p2/main.png',
+    coverImage: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044899/FIAUS/projects/p2/main.png',
     author: {
       name: 'FIAUS Tech Digital Strategy',
       role: 'Growth & Automation Consultants'
@@ -461,7 +461,7 @@ Using personal WhatsApp numbers or unofficial scraping scripts leads to phone nu
 
 const initialSettings = {
   companyName: 'FIAUS Tech',
-  logo: '/assets/logo.jpeg',
+  logo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg',
   logoPublicId: '',
   favicon: '',
   descriptor: 'Digital & AI Agency',
@@ -500,7 +500,7 @@ export const initialTeam = [
     positionAr: 'المؤسس والرئيس التنفيذي',
     bio: 'Professional Full-Stack Web Developer and Technical Architect specializing in modern React, Node.js ecosystems, cloud solutions, and structured digital product delivery.',
     bioAr: 'مطور ويب متكامل ومهندس معماري تقني متخصص في منظومة React و Node.js والحلول السحابية وتطوير المنتجات الرقمية الحديثة.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520752/FIAUS/team/founder_fahad_hossain.jpg',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg',
     socialLinks: {
       portfolio: 'https://fahaddev0.vercel.app/',
       github: 'https://github.com/fahad1420'
@@ -516,7 +516,7 @@ export const initialTeam = [
     positionAr: 'الشريك المؤسس',
     bio: 'Frontend-focused Full-Stack Developer specializing in modern JavaScript, TypeScript, React, Next.js web applications, performance engineering, and scalable interface design.',
     bioAr: 'مطور متكامل متخصص في هندسة الواجهات الأمامية الحديثة باستخدام JavaScript و TypeScript و React و Next.js وتحسين الأداء الرقمي.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520753/FIAUS/team/cofounder_toufiq_hasan_kiron.jpg',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044875/FIAUS/team/co-founder.jpg',
     socialLinks: {
       portfolio: 'https://kiron.dev'
     },
@@ -531,7 +531,7 @@ export const initialTeam = [
     positionAr: 'المدير',
     bio: 'Professional Full-Stack Developer focused on robust backend architectures, application engineering, system scalability, and client project execution.',
     bioAr: 'مطور متكامل متخصص في البنى التحتية الخلفية وهندسة التطبيقات وقابلية توسع الأنظمة وتنفيذ مشاريع العملاء.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520776/FIAUS/team/director_nahid_hassan_bulbul.png',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044876/FIAUS/team/director.png',
     socialLinks: {
       portfolio: ''
     },

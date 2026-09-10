@@ -12,7 +12,7 @@ const DEFAULT_TEAM = [
     positionAr: 'المؤسس والرئيس التنفيذي',
     bio: 'Professional Full-Stack Web Developer and Technical Architect specializing in modern React, Node.js ecosystems, cloud solutions, and structured digital product delivery.',
     bioAr: 'مطور ويب متكامل ومهندس معماري تقني متخصص في منظومة React و Node.js والحلول السحابية وتطوير المنتجات الرقمية الحديثة.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520752/FIAUS/team/founder_fahad_hossain.jpg',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg',
     socialLinks: {
       portfolio: 'https://fahaddev0.vercel.app/'
     },
@@ -27,7 +27,7 @@ const DEFAULT_TEAM = [
     positionAr: 'الشريك المؤسس',
     bio: 'Frontend-focused Full-Stack Developer specializing in modern JavaScript, TypeScript, React, Next.js web applications, performance engineering, and scalable interface design.',
     bioAr: 'مطور متكامل متخصص في هندسة الواجهات الأمامية الحديثة باستخدام JavaScript و TypeScript و React و Next.js وتحسين الأداء الرقمي.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520753/FIAUS/team/cofounder_toufiq_hasan_kiron.jpg',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044875/FIAUS/team/co-founder.jpg',
     socialLinks: {
       portfolio: 'https://kiron.dev'
     },
@@ -42,7 +42,7 @@ const DEFAULT_TEAM = [
     positionAr: 'المدير',
     bio: 'Professional Full-Stack Developer focused on robust backend architectures, application engineering, system scalability, and client project execution.',
     bioAr: 'مطور متكامل متخصص في البنى التحتية الخلفية وهندسة التطبيقات وقابلية توسع الأنظمة وتنفيذ مشاريع العملاء.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1788520776/FIAUS/team/director_nahid_hassan_bulbul.png',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044876/FIAUS/team/director.png',
     socialLinks: {
       portfolio: ''
     },
@@ -186,10 +186,10 @@ export default function AboutPage({ onOpenStartProject }) {
                           alt={name}
                           className="w-full h-full object-cover object-top"
                           onError={(e) => {
-                            // Fallback to local image asset if network or Cloudinary is unreachable
-                            if (member.name.includes('Fahad')) e.target.src = '/assets/team/founder.jpeg';
-                            else if (member.name.includes('Toufiq') || member.name.includes('Kiron')) e.target.src = '/assets/team/co-founder.jpeg';
-                            else e.target.src = '/assets/team/director.png';
+                            // Fallback to Cloudinary photo if any network glitch occurs
+                            if (member.name.includes('Fahad')) e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg';
+                            else if (member.name.includes('Toufiq') || member.name.includes('Kiron')) e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044875/FIAUS/team/co-founder.jpg';
+                            else e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044876/FIAUS/team/director.png';
                           }}
                         />
                       </div>

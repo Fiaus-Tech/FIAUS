@@ -45,11 +45,11 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 bg-white">
                 <img
-                  src={settings?.logo || '/assets/logo.jpeg'}
+                  src={settings?.logo || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg'}
                   alt="FIAUS Tech Logo"
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.target.src = '/assets/logo.jpeg';
+                    e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg';
                   }}
                 />
               </div>

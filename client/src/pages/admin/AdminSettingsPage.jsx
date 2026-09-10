@@ -54,7 +54,7 @@ export default function AdminSettingsPage() {
   const handleResetLogo = () => {
     setSettings((prev) => ({
       ...prev,
-      logo: '/assets/logo.jpeg',
+      logo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg',
       logoPublicId: ''
     }));
   };
@@ -116,11 +116,11 @@ export default function AdminSettingsPage() {
             <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 dark:bg-navy-850 border border-slate-200 dark:border-slate-800">
               <div className="relative w-16 h-16 rounded-xl overflow-hidden shadow-md ring-1 ring-slate-200 dark:ring-slate-700 bg-white shrink-0 flex items-center justify-center">
                 <img
-                  src={settings.logo || '/assets/logo.jpeg'}
+                  src={settings.logo || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg'}
                   alt="Active Logo Preview"
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    e.target.src = '/assets/logo.jpeg';
+                    e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg';
                   }}
                 />
               </div>
@@ -129,9 +129,9 @@ export default function AdminSettingsPage() {
                   Active Website Logo
                 </span>
                 <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate max-w-xs">
-                  {settings.logo || '/assets/logo.jpeg'}
+                  {settings.logo || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg'}
                 </span>
-                {settings.logo && settings.logo !== '/assets/logo.jpeg' && (
+                {settings.logo && settings.logo !== 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg' && (
                   <button
                     type="button"
                     onClick={handleResetLogo}
