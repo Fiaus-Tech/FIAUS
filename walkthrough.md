@@ -75,5 +75,29 @@ Target API: http://localhost:5000/api
 ## 4. Frontend Production Build Verification
 Ran `npm run build` in `client/`:
 - **1,702 modules transformed cleanly**
-- **Vite production bundle built with 0 errors in 14.11s**
+- **Vite production bundle built with 0 errors**
+
+---
+
+## 5. Legacy Assets Migration to Cloudinary & Production Fix
+
+### Root Cause of Missing Images
+1. `.vercelignore` previously excluded `*.png`, `*.jpeg`, `*.jpg`, preventing local assets from deploying on Vercel.
+2. The initial database and fallback JSON stores pointed to local paths (`/assets/...`), causing broken image states when deployed on serverless architecture.
+
+### Actions Executed
+1. **Uploaded 29 Legacy Assets to Cloudinary**:
+   - Agency Logo (`FIAUS/branding/logo.jpg`)
+   - All Team Profile Photos (`FIAUS/team/founder.jpg`, `co-founder.jpg`, `director.png`)
+   - All 5 Showcase Projects (Cover images and all 25 gallery screenshots across `p1` to `p5`)
+2. **Synchronized MongoDB Atlas & JSON Stores**:
+   - Updated `WebsiteSettings` with permanent Cloudinary logo URL.
+   - Updated `TeamMember` collection with permanent Cloudinary photo URLs.
+   - Updated `Project` collection with permanent Cloudinary cover and screenshot URLs.
+3. **Fixed `.vercelignore`**:
+   - Removed image extension exclusion rules (`*.png`, `*.jpeg`, `*.jpg`).
+4. **Updated Client & Server Fallbacks**:
+   - Configured all client components (`Navbar`, `Footer`, `AdminLayout`, `AboutPage`, `BlogPage`, `AdminSettingsPage`, `AdminProjectsPage`, `AdminCMSPage`) to use Cloudinary URLs as canonical fallbacks with dynamic `onError` handling.
+5. **Git Push & Deployment**:
+   - All changes pushed directly to `origin main` to trigger automatic Vercel production deployment.
 
