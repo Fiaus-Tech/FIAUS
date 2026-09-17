@@ -162,7 +162,7 @@ async function uploadAllAssets() {
     } else if (project.slug === 'safead-extension' && assetMap['/assets/projects/p3/main.png']) {
       project.coverImage = assetMap['/assets/projects/p3/main.png'];
       updated = true;
-    } else if (project.slug === 'bangladesh-power-dashboard' && assetMap['/assets/projects/p4/main.png']) {
+    } else if ((project.slug === 'current-ache-bd' || project.slug === 'bangladesh-power-dashboard') && assetMap['/assets/projects/p4/main.png']) {
       project.coverImage = assetMap['/assets/projects/p4/main.png'];
       updated = true;
     } else if (project.slug === 'luxe-dining-oasis' && assetMap['/assets/projects/p5/main.png']) {

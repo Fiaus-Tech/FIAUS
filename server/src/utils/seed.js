@@ -146,15 +146,15 @@ const realProjects = [
   },
   {
     title: 'Current Ache BD',
-    titleAr: 'كرنت آشي بنغلاديش',
+    titleAr: 'كرنت آشي بي دي',
     slug: 'current-ache-bd',
     category: 'Full-Stack & Cloud',
     categoryAr: 'التطبيقات السحابية وأنظمة البيانات',
     projectType: 'National Power & Energy Telemetry Platform',
     shortDescription: 'Real-time public utility monitoring platform aggregating national power grid metrics, area-by-area load shedding history, and live stats.',
     shortDescriptionAr: 'منصة وطنية لمتابعة شبكة الكهرباء والطاقة في الوقت الفعلي مع تقارير وإحصاءات تاريخية ومناطقية مفصلة.',
-    fullDescription: 'Current Ache BD is a high-availability telemetry portal serving real-time energy tracking across all regions of Bangladesh. With live national capacity analytics, area-specific power status tracking, and historical outage logs, the platform processes heavy data updates while remaining ultra-fast and accessible.',
-    fullDescriptionAr: 'بوابة بيانات عامة عالية التوافر لتتبع حالة شبكة الكهرباء ومحطات الطاقة في مختلف مناطق بنغلاديش بدقة وسرعة فائقة.',
+    fullDescription: 'Current Ache BD is a high-availability telemetry portal serving real-time energy tracking across all regions. With live national capacity analytics, area-specific power status tracking, and historical outage logs, the platform processes heavy data updates while remaining ultra-fast and accessible.',
+    fullDescriptionAr: 'بوابة بيانات عامة عالية التوافر لتتبع حالة شبكة الكهرباء ومحطات الطاقة في مختلف المناطق بدقة وسرعة فائقة.',
     technologies: ['React', 'Vite', 'Node.js', 'Chart.js / Data Viz', 'Tailwind CSS', 'API Integration'],
     features: [
       'National Power Capacity Analytics',
@@ -426,7 +426,6 @@ const initialFAQs = [
   {
     question: 'How does FIAUS Tech approach new client projects?',
     questionAr: 'كيف تبدأ فياوس تك العمل على المشاريع الجديدة؟',
-    answer: 'We begin with a strategic discovery phase to understand your business goals, target markets (e.g. Bangladesh, Saudi Arabia, or Global), and technical requirements. We then craft a tailored architecture, prototype the design, engineer the solution, and deploy with comprehensive testing and ongoing support.',
     answer: 'We begin with a strategic discovery phase to understand your business goals, target markets (e.g. Saudi Arabia or Global), and technical requirements. We then craft a tailored architecture, prototype the design, engineer the solution, and deploy with comprehensive testing and ongoing support.',
     answerAr: 'نبدأ بجلسة استكشاف استراتيجية لفهم أهداف مشروعك والسوق المستهدف، ثم نضع المخطط التقني ونبني الواجهات والأنظمة مع إجراء اختبارات أداء دقيقة قبل الإطلاق.',
     category: 'General',
@@ -435,11 +434,8 @@ const initialFAQs = [
   {
     question: 'What regions and clients do you serve?',
     questionAr: 'ما هي المناطق والأسواق التي تخدمونها؟',
-    answer: 'FIAUS Tech operates internationally with core focus on clients in Bangladesh, Saudi Arabia, the GCC, and worldwide. Our infrastructure, bilingual capabilities (English & Arabic RTL), and flexible engagement models allow us to collaborate smoothly across time zones.',
-    answerAr: 'نقدم خدماتنا دولياً مع تركيز رئيسي على العملاء في المملكة العربية السعودية وبنغلاديش ودول الخليج وحول العالم، مع دعم كامل للغتين العربية والإنجليزية.',
     answer: 'FIAUS Tech operates internationally with core focus on clients in Saudi Arabia, the GCC, and worldwide. Our infrastructure, bilingual capabilities (English & Arabic RTL), and flexible engagement models allow us to collaborate smoothly across time zones.',
     answerAr: 'نقدم خدماتنا دولياً مع تركيز رئيسي على العملاء في المملكة العربية السعودية ودول الخليج وحول العالم، مع دعم كامل للغتين العربية والإنجليزية.',
-
     category: 'General',
     displayOrder: 2
   },

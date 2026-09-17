@@ -18,17 +18,14 @@ export const translations = {
       titleLine1: 'Engineering High-Impact',
       titleHighlight: 'Digital Experiences',
       titleLine2: '& Intelligent AI Solutions',
-      subhead: 'FIAUS Tech empowers forward-thinking enterprises in Bangladesh, Saudi Arabia, and globally with high-performance web systems, custom AI automation, and scalable cloud architectures.',
       subhead: 'FIAUS Tech empowers forward-thinking enterprises in Saudi Arabia and globally with high-performance web systems, custom AI automation, and scalable cloud architectures.',
       ctaPrimary: 'Start a Project',
       ctaSecondary: 'Explore Selected Work',
       trustBadges: {
-        global: 'Serving Bangladesh, Saudi Arabia & Worldwide',
         global: 'Serving Saudi Arabia & Worldwide',
         engineering: 'Full-Stack & Custom AI Engineering',
         performance: '100% Tailored & Production Ready'
       }
-
     },
     services: {
       badge: 'OUR CAPABILITIES',
@@ -84,9 +81,8 @@ export const translations = {
       title: 'Engineered for Performance. Built for Growth.',
       p1: {
         title: 'International Standards',
-        desc: 'Bilingual engineering tailored for high-growth markets in Saudi Arabia, Bangladesh, and the global digital economy.'
+        desc: 'Bilingual engineering tailored for high-growth markets in Saudi Arabia and the global digital economy.'
       },
-
       p2: {
         title: 'Full-Stack Mastery',
         desc: 'No fragile templates. We write clean, modular, and maintainable codebases across React, Node.js, and cloud ecosystems.'
@@ -130,11 +126,11 @@ export const translations = {
       title: 'Let’s Build Something Exceptional',
       subtitle: 'Tell us about your project. Our senior technical team will review your brief and schedule a direct consultation within 24 hours.',
       fullName: 'Full Name',
-      fullNamePlaceholder: 'e.g. Fahad Al-Mansour / Tanvir Ahmed',
+      fullNamePlaceholder: 'e.g. Fahad Al-Mansour / Saad Al-Harbi',
       email: 'Work Email',
       emailPlaceholder: 'you@company.com',
       whatsapp: 'WhatsApp / Phone Number',
-      whatsappPlaceholder: '+966 5X XXX XXXX or +880 1X XXXX XXXX',
+      whatsappPlaceholder: '+966 5X XXX XXXX',
       country: 'Country / Region',
       company: 'Company / Organization Name',
       companyPlaceholder: 'e.g. Enterprise Ltd.',
@@ -154,12 +150,10 @@ export const translations = {
     contact: {
       badge: 'DIRECT CONTACT',
       title: 'Connect With Our Team',
-      subtitle: 'Reach out via our direct communication channels. We operate across time zones in Saudi Arabia, Bangladesh, and globally.',
       subtitle: 'Reach out via our direct communication channels. We operate across time zones in Saudi Arabia and globally.',
       emailLabel: 'Direct Email',
       phoneLabel: 'WhatsApp & Phone',
       regionsLabel: 'Active Regional Hubs',
-      regionsValue: 'Saudi Arabia (KSA) • Bangladesh (BD) • Worldwide',
       regionsValue: 'Saudi Arabia (KSA) • Worldwide',
       socialTitle: 'Official Agency Channels',
 
@@ -218,17 +212,14 @@ export const translations = {
       titleLine1: 'هندسة تجارب رقمية',
       titleHighlight: 'عالية التأثير',
       titleLine2: 'وحلول ذكاء اصطناعي متقدمة',
-      subhead: 'نمكن الشركات الرائدة في المملكة العربية السعودية وبنغلاديش وحول العالم عبر بناء منصات ويب فائقة الأداء، وأنظمة أتمتة ذكية، وبنى سحابية قابلة للتوسع.',
       subhead: 'نمكن الشركات الرائدة في المملكة العربية السعودية وحول العالم عبر بناء منصات ويب فائقة الأداء، وأنظمة أتمتة ذكية، وبنى سحابية قابلة للتوسع.',
       ctaPrimary: 'ابدأ مشروعك الآن',
       ctaSecondary: 'استعرض أعمالنا المختارة',
       trustBadges: {
-        global: 'نخدم السعودية، بنغلاديش، وعملاءنا دولياً',
         global: 'نخدم السعودية وعملاءنا حول العالم',
         engineering: 'تطوير متكامل وهندسة ذكاء اصطناعي مخصصة',
         performance: 'أنظمة إنتاجية مخصصة 100% بدون قوالب جاهزة'
       }
-
     },
     services: {
       badge: 'قدراتنا التقنية',
@@ -284,9 +275,8 @@ export const translations = {
       title: 'صُممت للأداء العالي. بُنيت لتحقيق النمو.',
       p1: {
         title: 'معايير دولية وخبرة إقليمية',
-        desc: 'هندسة ثنائية اللغة مهيأة تماماً للأسواق سريعة النمو في المملكة العربية السعودية وبنغلاديش والعالم.'
+        desc: 'هندسة ثنائية اللغة مهيأة تماماً للأسواق سريعة النمو في المملكة العربية السعودية والعالم.'
       },
-
       p2: {
         title: 'إتقان هندسي متكامل',
         desc: 'لا نعتمد على القوالب الجاهزة الضعيفة. نكتب أكواداً نظيفة وقابلة للتوسع والصيانة على أعلى المعايير.'
@@ -330,12 +320,10 @@ export const translations = {
       title: 'لنصنع معاً مشروعاً تقنياً استثنائياً',
       subtitle: 'أخبرنا عن تفاصيل وتطلعات مشروعك. سيقوم فريقنا التقني بمراجعة الطلب والتواصل معك خلال 24 ساعة.',
       fullName: 'الاسم الكامل',
-      fullNamePlaceholder: 'مثال: فهد المنصور / تنوير أحمد',
       fullNamePlaceholder: 'مثال: فهد المنصور / سعد الحربي',
       email: 'البريد الإلكتروني للعمل',
       emailPlaceholder: 'you@company.com',
       whatsapp: 'رقم الواتساب أو الهاتف',
-      whatsappPlaceholder: '+966 5X XXX XXXX أو +880 1X XXXX XXXX',
       whatsappPlaceholder: '+966 5X XXX XXXX',
       country: 'الدولة / المنطقة',
       company: 'اسم الشركة أو المؤسسة',
@@ -360,7 +348,6 @@ export const translations = {
       emailLabel: 'البريد الإلكتروني المباشر',
       phoneLabel: 'الواتساب والهاتف',
       regionsLabel: 'نطاق العمل الرئيسي',
-      regionsValue: 'المملكة العربية السعودية • بنغلاديش • دولياً',
       regionsValue: 'المملكة العربية السعودية • دولياً',
       socialTitle: 'قنوات التواصل الرسمية',
 

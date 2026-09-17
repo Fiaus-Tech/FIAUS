@@ -96,7 +96,7 @@ const fallbackProjects = [
   {
     _id: 'p4',
     title: 'Current Ache BD',
-    titleAr: 'كرنت آشي بنغلاديش',
+    titleAr: 'كرنت آشي بي دي',
     slug: 'current-ache-bd',
     category: 'Full-Stack & Cloud',
     categoryAr: 'التطبيقات السحابية وأنظمة البيانات',

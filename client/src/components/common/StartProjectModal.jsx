@@ -179,10 +179,11 @@ export default function StartProjectModal({ isOpen, onClose }) {
                     className="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-500/50"
                   >
                     <option value="Saudi Arabia">Saudi Arabia (المملكة العربية السعودية)</option>
-                    <option value="Bangladesh">Bangladesh (বাংলাদেশ)</option>
                     <option value="United Arab Emirates">United Arab Emirates (الإمارات)</option>
                     <option value="Qatar">Qatar (قطر)</option>
                     <option value="Kuwait">Kuwait (الكويت)</option>
+                    <option value="Bahrain">Bahrain (البحرين)</option>
+                    <option value="Oman">Oman (عُمان)</option>
                     <option value="United States">United States</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="International / Other">International / Other</option>

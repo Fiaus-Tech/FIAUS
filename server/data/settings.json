@@ -21,7 +21,6 @@
     "snapchat": "https://snapchat.com/add/fiaustech"
   },
   "regionsServed": [
-    "Bangladesh",
     "Saudi Arabia",
     "Global"
   ],
@@ -35,6 +34,6 @@
     "defaultTitle": "FIAUS Tech | Digital & AI Agency — Innovate. Automate. Grow.",
     "defaultTitleAr": "فياوس تك | وكالة التحول الرقمي والذكاء الاصطناعي",
     "defaultMetaDesc": "FIAUS Tech is a premier international Digital & AI Agency engineering high-impact web applications, intelligent AI automation, and scalable cloud solutions.",
-    "defaultMetaDescAr": "فياوس تك هي وكالة رقمية رائدة متخصصة في هندسة الويب وتطبيقات الذكاء الاصطناعي والأتمتة الذكية لخدمة الشركات في المملكة العربية السعودية وبنغلاديش وحول العالم."
+    "defaultMetaDescAr": "فياوس تك هي وكالة رقمية رائدة متخصصة في هندسة الويب وتطبيقات الذكاء الاصطناعي والأتمتة الذكية لخدمة الشركات في المملكة العربية السعودية وحول العالم."
   }
 }
