@@ -67,6 +67,7 @@ export const fetchTeamMembers = (params) => api.get('/cms/team', { params });
 export const createTeamMember = (data) => api.post('/cms/team', data);
 export const updateTeamMember = (id, data) => api.put(`/cms/team/${id}`, data);
 export const deleteTeamMember = (id) => api.delete(`/cms/team/${id}`);
+export const reorderTeamMembers = (orderedIds) => api.put('/cms/team/reorder', { orderedIds });
 
 // Testimonials CMS API
 export const fetchTestimonials = (params) => api.get('/cms/testimonials', { params });

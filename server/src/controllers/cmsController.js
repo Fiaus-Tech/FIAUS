@@ -163,13 +163,14 @@ export const getTeamMembers = async (req, res, next) => {
     const showAll = req.query.all === 'true';
     if (isMongo()) {
       const filter = showAll ? {} : { status: 'active' };
-      const team = await TeamMember.find(filter).sort({ displayOrder: 1 });
+      const team = await TeamMember.find(filter).sort({ displayOrder: 1, createdAt: 1 });
       return res.status(200).json({ success: true, count: team.length, data: team });
     }
     let list = store.getTeam();
     if (!showAll) {
-      list = list.filter((t) => t.status !== 'inactive');
+      list = list.filter((t) => t.status === 'active' || !t.status);
     }
+    list.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
     res.status(200).json({ success: true, count: list.length, data: list });
   } catch (error) {
     next(error);
@@ -178,14 +179,22 @@ export const getTeamMembers = async (req, res, next) => {
 
 export const createTeamMember = async (req, res, next) => {
   try {
+    const body = { ...req.body };
+    if (body.published !== undefined && body.status === undefined) {
+      body.status = body.published ? 'active' : 'inactive';
+    }
+    if (!body.status) {
+      body.status = 'active';
+    }
+
     if (isMongo()) {
-      const member = await TeamMember.create(req.body);
+      const member = await TeamMember.create(body);
       return res.status(201).json({ success: true, data: member });
     }
     const list = store.getTeam();
     const newMember = {
       _id: 'team_' + Date.now(),
-      ...req.body,
+      ...body,
       createdAt: new Date().toISOString()
     };
     list.push(newMember);
@@ -199,17 +208,24 @@ export const createTeamMember = async (req, res, next) => {
 export const updateTeamMember = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const updateData = { ...req.body };
+    if (updateData.published !== undefined && updateData.status === undefined) {
+      updateData.status = updateData.published ? 'active' : 'inactive';
+    }
+
     if (isMongo()) {
-      const isObjectId = mongoose.Types.ObjectId.isValid(id);
-      const query = isObjectId ? { _id: id } : { _id: id };
-      const member = await TeamMember.findByIdAndUpdate(id, { $set: req.body }, { new: true });
+      const member = await TeamMember.findByIdAndUpdate(
+        id,
+        { $set: updateData },
+        { new: true, runValidators: true }
+      );
       if (!member) return res.status(404).json({ success: false, message: 'Member not found.' });
       return res.status(200).json({ success: true, data: member });
     }
     const list = store.getTeam();
     const idx = list.findIndex((m) => m._id === id);
     if (idx !== -1) {
-      list[idx] = { ...list[idx], ...req.body, updatedAt: new Date().toISOString() };
+      list[idx] = { ...list[idx], ...updateData, updatedAt: new Date().toISOString() };
       store.saveTeam(list);
       return res.status(200).json({ success: true, data: list[idx] });
     }
@@ -225,12 +241,41 @@ export const deleteTeamMember = async (req, res, next) => {
     if (isMongo()) {
       const member = await TeamMember.findByIdAndDelete(id);
       if (!member) return res.status(404).json({ success: false, message: 'Member not found.' });
-      return res.status(200).json({ success: true, message: 'Member deleted.' });
+      return res.status(200).json({ success: true, message: 'Member deleted successfully.' });
     }
     let list = store.getTeam();
     list = list.filter((m) => m._id !== id);
     store.saveTeam(list);
-    res.status(200).json({ success: true, message: 'Member deleted.' });
+    res.status(200).json({ success: true, message: 'Member deleted successfully.' });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const reorderTeamMembers = async (req, res, next) => {
+  try {
+    const { orderedIds } = req.body;
+    if (!Array.isArray(orderedIds)) {
+      return res.status(400).json({ success: false, message: 'orderedIds must be an array of team IDs.' });
+    }
+
+    if (isMongo()) {
+      const updatePromises = orderedIds.map((id, index) =>
+        TeamMember.findByIdAndUpdate(id, { displayOrder: index + 1 })
+      );
+      await Promise.all(updatePromises);
+      const updatedTeam = await TeamMember.find().sort({ displayOrder: 1 });
+      return res.status(200).json({ success: true, message: 'Team reordered successfully.', data: updatedTeam });
+    }
+
+    let teamList = store.getTeam();
+    orderedIds.forEach((id, idx) => {
+      const found = teamList.find((m) => m._id === id);
+      if (found) found.displayOrder = idx + 1;
+    });
+    teamList.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+    store.saveTeam(teamList);
+    res.status(200).json({ success: true, message: 'Team reordered successfully.', data: teamList });
   } catch (error) {
     next(error);
   }

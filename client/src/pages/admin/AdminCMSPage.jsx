@@ -154,6 +154,16 @@ export default function AdminCMSPage() {
     }
   };
 
+  const handleToggleTeamStatus = async (m) => {
+    const nextStatus = m.status === 'inactive' ? 'active' : 'inactive';
+    try {
+      await updateTeamMember(m._id, { ...m, status: nextStatus });
+      loadData();
+    } catch (err) {
+      alert('Failed to update status: ' + err.message);
+    }
+  };
+
   const handleDeleteTeam = async (id) => {
     if (!window.confirm('Delete this team member?')) return;
     try {
@@ -510,9 +520,24 @@ export default function AdminCMSPage() {
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">
                             {m.name}
                           </h4>
-                          <span className="inline-block mt-0.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400">
-                            {m.position}
-                          </span>
+                          <div className="flex items-center gap-1.5 mt-1">
+                            <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-400">
+                              {m.position}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => handleToggleTeamStatus(m)}
+                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold border transition-colors ${
+                                m.status === 'inactive'
+                                  ? 'bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800 hover:bg-amber-100'
+                                  : 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800 hover:bg-emerald-100'
+                              }`}
+                              title={m.status === 'inactive' ? 'Click to Activate (Will show on frontend)' : 'Click to Deactivate (Will hide from frontend)'}
+                            >
+                              <span className={`w-1.5 h-1.5 rounded-full ${m.status === 'inactive' ? 'bg-amber-500' : 'bg-emerald-500 animate-pulse'}`} />
+                              <span>{m.status === 'inactive' ? 'Inactive' : 'Active'}</span>
+                            </button>
+                          </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-1 shrink-0">
@@ -998,7 +1023,7 @@ export default function AdminCMSPage() {
               </div>
 
               {/* Display Order & Active status */}
-              <div className="grid grid-cols-2 gap-3 items-center">
+              <div className="space-y-3 pt-2">
                 <div>
                   <label className="block font-bold mb-1 text-slate-700 dark:text-slate-300">Display Order</label>
                   <input
@@ -1008,15 +1033,23 @@ export default function AdminCMSPage() {
                     className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
                   />
                 </div>
-                <div className="flex items-center gap-2 pt-5">
+
+                <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-navy-850 border border-slate-200 dark:border-slate-800">
                   <input
                     type="checkbox"
                     id="teamActive"
                     checked={editingMember.status !== 'inactive'}
                     onChange={(e) => setEditingMember({ ...editingMember, status: e.target.checked ? 'active' : 'inactive' })}
-                    className="w-4 h-4 rounded text-brand-600"
+                    className="w-4 h-4 rounded text-brand-600 cursor-pointer"
                   />
-                  <label htmlFor="teamActive" className="font-bold text-slate-700 dark:text-slate-300">Active Profile</label>
+                  <div>
+                    <label htmlFor="teamActive" className="font-bold text-slate-900 dark:text-white cursor-pointer block text-xs">
+                      {editingMember.status !== 'inactive' ? 'Active / Visible on Frontend' : 'Inactive / Hidden from Frontend'}
+                    </label>
+                    <span className="text-[10px] text-slate-500 block">
+                      {editingMember.status !== 'inactive' ? 'This team member is published and visible on the website.' : 'This member is hidden and will not appear on the website.'}
+                    </span>
+                  </div>
                 </div>
               </div>
 

@@ -12,6 +12,7 @@ import {
   createTeamMember,
   updateTeamMember,
   deleteTeamMember,
+  reorderTeamMembers,
   getTestimonials,
   createTestimonial,
   updateTestimonial,
@@ -41,6 +42,7 @@ router.delete('/faqs/:id', protect, deleteFAQ);
 // Team Members
 router.get('/team', getTeamMembers);
 router.post('/team', protect, createTeamMember);
+router.put('/team/reorder', protect, reorderTeamMembers);
 router.put('/team/:id', protect, updateTeamMember);
 router.delete('/team/:id', protect, deleteTeamMember);
 

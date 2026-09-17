@@ -3,69 +3,33 @@ import { useLanguage } from '../context/LanguageContext';
 import { Sparkles, Globe, Target, Rocket, Users, ArrowUpRight, ExternalLink } from 'lucide-react';
 import { fetchTeamMembers } from '../services/api';
 
-const DEFAULT_TEAM = [
-  {
-    _id: '1',
-    name: 'Fahad Hossain',
-    nameAr: 'فهد حسين',
-    position: 'Founder & CEO',
-    positionAr: 'المؤسس والرئيس التنفيذي',
-    bio: 'Professional Full-Stack Web Developer and Technical Architect specializing in modern React, Node.js ecosystems, cloud solutions, and structured digital product delivery.',
-    bioAr: 'مطور ويب متكامل ومهندس معماري تقني متخصص في منظومة React و Node.js والحلول السحابية وتطوير المنتجات الرقمية الحديثة.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg',
-    socialLinks: {
-      portfolio: 'https://fahaddev0.vercel.app/'
-    },
-    displayOrder: 1,
-    status: 'active'
-  },
-  {
-    _id: '2',
-    name: 'Toufiq Hasan Kiron',
-    nameAr: 'توفيق حسن كيرون',
-    position: 'Co-Founder',
-    positionAr: 'الشريك المؤسس',
-    bio: 'Frontend-focused Full-Stack Developer specializing in modern JavaScript, TypeScript, React, Next.js web applications, performance engineering, and scalable interface design.',
-    bioAr: 'مطور متكامل متخصص في هندسة الواجهات الأمامية الحديثة باستخدام JavaScript و TypeScript و React و Next.js وتحسين الأداء الرقمي.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044875/FIAUS/team/co-founder.jpg',
-    socialLinks: {
-      portfolio: 'https://kiron.dev'
-    },
-    displayOrder: 2,
-    status: 'active'
-  },
-  {
-    _id: '3',
-    name: 'Nahid Hassan Bulbul',
-    nameAr: 'ناهد حسن بلبل',
-    position: 'Director',
-    positionAr: 'المدير',
-    bio: 'Professional Full-Stack Developer focused on robust backend architectures, application engineering, system scalability, and client project execution.',
-    bioAr: 'مطور متكامل متخصص في البنى التحتية الخلفية وهندسة التطبيقات وقابلية توسع الأنظمة وتنفيذ مشاريع العملاء.',
-    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044876/FIAUS/team/director.png',
-    socialLinks: {
-      portfolio: ''
-    },
-    displayOrder: 3,
-    status: 'active'
-  }
-];
-
 export default function AboutPage({ onOpenStartProject }) {
   const { t, isRTL, language } = useLanguage();
-  const [team, setTeam] = useState(DEFAULT_TEAM);
+  const [team, setTeam] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
     fetchTeamMembers()
       .then((res) => {
-        const teamList = res?.data || (Array.isArray(res) ? res : null);
-        if (isMounted && Array.isArray(teamList) && teamList.length > 0) {
-          setTeam(teamList);
+        const teamList = res?.data || (Array.isArray(res) ? res : []);
+        if (isMounted) {
+          const activeMembers = (Array.isArray(teamList) ? teamList : [])
+            .filter((m) => m && m.status === 'active')
+            .sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0));
+          setTeam(activeMembers);
         }
       })
-      .catch(() => {
-        // Keeps DEFAULT_TEAM safely
+      .catch((err) => {
+        console.error('Error fetching team members:', err);
+        if (isMounted) {
+          setTeam([]);
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setLoading(false);
+        }
       });
     return () => {
       isMounted = false;
@@ -149,99 +113,98 @@ export default function AboutPage({ onOpenStartProject }) {
         </div>
 
         {/* --- DEDICATED TEAM SECTION (Compact, Balanced Avatar Presentation) --- */}
-        <div className="space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-50 dark:bg-brand-950/70 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300">
-              <Users className="w-3.5 h-3.5" />
-              <span>{language === 'ar' ? 'فريق القيادة' : 'LEADERSHIP & ENGINEERING'}</span>
+        {team.length > 0 && (
+          <div className="space-y-12">
+            <div className="text-center max-w-2xl mx-auto space-y-3">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-50 dark:bg-brand-950/70 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300">
+                <Users className="w-3.5 h-3.5" />
+                <span>{language === 'ar' ? 'فريق القيادة' : 'LEADERSHIP & ENGINEERING'}</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                {language === 'ar' ? 'فريق فياوس تك' : 'Meet the Core Leadership Team'}
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+                {language === 'ar'
+                  ? 'نخبة من المهندسين والمطورين الملتزمين ببناء حلول رقمية وأنظمة أتمتة بمعايير عالمية.'
+                  : 'Senior technical architects and software engineers dedicated to high-impact digital delivery and intelligent systems.'}
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              {language === 'ar' ? 'فريق فياوس تك' : 'Meet the Core Leadership Team'}
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
-              {language === 'ar'
-                ? 'نخبة من المهندسين والمطورين الملتزمين ببناء حلول رقمية وأنظمة أتمتة بمعايير عالمية.'
-                : 'Senior technical architects and software engineers dedicated to high-impact digital delivery and intelligent systems.'}
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member) => {
-              const name = language === 'ar' && member.nameAr ? member.nameAr : member.name;
-              const position = language === 'ar' && member.positionAr ? member.positionAr : member.position;
-              const bio = language === 'ar' && member.bioAr ? member.bioAr : member.bio;
-              const portfolioUrl = member.socialLinks?.portfolio;
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {team.map((member) => {
+                const name = language === 'ar' && member.nameAr ? member.nameAr : member.name;
+                const position = language === 'ar' && member.positionAr ? member.positionAr : member.position;
+                const bio = language === 'ar' && member.bioAr ? member.bioAr : member.bio;
+                const portfolioUrl = member.socialLinks?.portfolio;
 
-              return (
-                <div
-                  key={member._id || member.name}
-                  className="rounded-3xl bg-slate-50/80 dark:bg-navy-850/80 border border-slate-200/90 dark:border-slate-800/80 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-500/50 hover:shadow-lg transition-all duration-300 group"
-                >
-                  <div className="space-y-5">
-                    {/* Compact, Balanced Profile Photo */}
-                    <div className="flex items-center gap-4">
-                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-2xl overflow-hidden border-2 border-brand-500/30 dark:border-brand-400/20 bg-slate-200 dark:bg-navy-800 shadow-md group-hover:scale-105 transition-transform duration-300">
-                        <img
-                          src={member.photo}
-                          alt={name}
-                          className="w-full h-full object-cover object-top"
-                          onError={(e) => {
-                            // Fallback to Cloudinary photo if any network glitch occurs
-                            if (member.name.includes('Fahad')) e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg';
-                            else if (member.name.includes('Toufiq') || member.name.includes('Kiron')) e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044875/FIAUS/team/co-founder.jpg';
-                            else e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044876/FIAUS/team/director.png';
-                          }}
-                        />
-                      </div>
-                      <div className="space-y-1 text-start">
-                        <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                          {name}
-                        </h3>
-                        <div className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-500/20">
-                          {position}
+                return (
+                  <div
+                    key={member._id || member.name}
+                    className="rounded-3xl bg-slate-50/80 dark:bg-navy-850/80 border border-slate-200/90 dark:border-slate-800/80 p-6 sm:p-8 flex flex-col justify-between hover:border-brand-500/50 hover:shadow-lg transition-all duration-300 group"
+                  >
+                    <div className="space-y-5">
+                      {/* Compact, Balanced Profile Photo */}
+                      <div className="flex items-center gap-4">
+                        <div className="relative w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-2xl overflow-hidden border-2 border-brand-500/30 dark:border-brand-400/20 bg-slate-200 dark:bg-navy-800 shadow-md group-hover:scale-105 transition-transform duration-300">
+                          <img
+                            src={member.photo || 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg'}
+                            alt={name}
+                            className="w-full h-full object-cover object-top"
+                            onError={(e) => {
+                              e.target.src = 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044874/FIAUS/branding/logo.jpg';
+                            }}
+                          />
+                        </div>
+                        <div className="space-y-1 text-start">
+                          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
+                            {name}
+                          </h3>
+                          <div className="inline-block px-2.5 py-0.5 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-500/20">
+                            {position}
+                          </div>
                         </div>
                       </div>
+
+                      {/* Bio */}
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed text-start">
+                        {bio}
+                      </p>
                     </div>
 
-                    {/* Bio */}
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed text-start">
-                      {bio}
-                    </p>
+                    {/* Portfolio Link Button (If available) */}
+                    <div className="pt-6 mt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex items-center justify-between">
+                      {portfolioUrl ? (
+                        <a
+                          href={portfolioUrl.startsWith('http') ? portfolioUrl : `https://${portfolioUrl}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 group/link transition-colors"
+                        >
+                          <span>{language === 'ar' ? 'زيارة المعرض الشخصي' : 'View Portfolio'}</span>
+                          <ExternalLink className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''} group-hover/link:translate-x-0.5 transition-transform`} />
+                        </a>
+                      ) : (
+                        <span className="text-xs text-slate-400 dark:text-slate-500 italic">
+                          {language === 'ar' ? 'فياوس تك للحلول الرقمية' : 'FIAUS Tech Team'}
+                        </span>
+                      )}
+                    </div>
                   </div>
+                );
+              })}
+            </div>
 
-                  {/* Portfolio Link Button (If available) */}
-                  <div className="pt-6 mt-4 border-t border-slate-200/70 dark:border-slate-800/70 flex items-center justify-between">
-                    {portfolioUrl ? (
-                      <a
-                        href={portfolioUrl.startsWith('http') ? portfolioUrl : `https://${portfolioUrl}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 group/link transition-colors"
-                      >
-                        <span>{language === 'ar' ? 'زيارة المعرض الشخصي' : 'View Portfolio'}</span>
-                        <ExternalLink className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''} group-hover/link:translate-x-0.5 transition-transform`} />
-                      </a>
-                    ) : (
-                      <span className="text-xs text-slate-400 dark:text-slate-500 italic">
-                        {language === 'ar' ? 'فياوس تك للحلول الرقمية' : 'FIAUS Tech Team'}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+            <div className="pt-8 text-center">
+              <button
+                onClick={onOpenStartProject}
+                className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-lg hover:shadow-glow transition-all duration-200"
+              >
+                <span>{t('hero.ctaPrimary')}</span>
+                <ArrowUpRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
           </div>
-
-          <div className="pt-8 text-center">
-            <button
-              onClick={onOpenStartProject}
-              className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-lg hover:shadow-glow transition-all duration-200"
-            >
-              <span>{t('hero.ctaPrimary')}</span>
-              <ArrowUpRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
-            </button>
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

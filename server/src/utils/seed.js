@@ -8,6 +8,7 @@ import Project from '../models/Project.js';
 import Service from '../models/Service.js';
 import FAQ from '../models/FAQ.js';
 import WebsiteSettings from '../models/WebsiteSettings.js';
+import TeamMember from '../models/TeamMember.js';
 
 try {
   dns.setServers(['8.8.8.8', '1.1.1.1']);
@@ -468,6 +469,52 @@ const initialFAQs = [
   }
 ];
 
+export const initialTeam = [
+  {
+    name: 'Fahad Hossain',
+    nameAr: 'فهد حسين',
+    position: 'Founder & CEO',
+    positionAr: 'المؤسس والرئيس التنفيذي',
+    bio: 'Professional Full-Stack Web Developer and Technical Architect specializing in modern React, Node.js ecosystems, cloud solutions, and structured digital product delivery.',
+    bioAr: 'مطور ويب متكامل ومهندس معماري تقني متخصص في منظومة React و Node.js والحلول السحابية وتطوير المنتجات الرقمية الحديثة.',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044877/FIAUS/team/founder.jpg',
+    socialLinks: {
+      portfolio: 'https://fahaddev0.vercel.app/',
+      github: 'https://github.com/fahad1420'
+    },
+    displayOrder: 1,
+    status: 'active'
+  },
+  {
+    name: 'Toufiq Hasan Kiron',
+    nameAr: 'توفيق حسن كيرون',
+    position: 'Co-Founder',
+    positionAr: 'الشريك المؤسس',
+    bio: 'Frontend-focused Full-Stack Developer specializing in modern JavaScript, TypeScript, React, Next.js web applications, performance engineering, and scalable interface design.',
+    bioAr: 'مطور متكامل متخصص في هندسة الواجهات الأمامية الحديثة باستخدام JavaScript و TypeScript و React و Next.js وتحسين الأداء الرقمي.',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044875/FIAUS/team/co-founder.jpg',
+    socialLinks: {
+      portfolio: 'https://kiron.dev'
+    },
+    displayOrder: 2,
+    status: 'active'
+  },
+  {
+    name: 'Nahid Hassan Bulbul',
+    nameAr: 'ناهد حسن بلبل',
+    position: 'Director',
+    positionAr: 'المدير',
+    bio: 'Professional Full-Stack Developer focused on robust backend architectures, application engineering, system scalability, and client project execution.',
+    bioAr: 'مطور متكامل متخصص في البنى التحتية الخلفية وهندسة التطبيقات وقابلية توسع الأنظمة وتنفيذ مشاريع العملاء.',
+    photo: 'https://res.cloudinary.com/n5yq0whs/image/upload/v1789044876/FIAUS/team/director.png',
+    socialLinks: {
+      portfolio: ''
+    },
+    displayOrder: 3,
+    status: 'active'
+  }
+];
+
 export const seedDatabase = async () => {
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/fiaus_tech';
@@ -510,6 +557,15 @@ export const seedDatabase = async () => {
     if (!settings) {
       await WebsiteSettings.create({});
       console.log('[Seed] Created default website settings.');
+    }
+
+    // 6. Seed Team Members (Non-destructive: only insert if empty to preserve admin updates)
+    const teamCount = await TeamMember.countDocuments();
+    if (teamCount === 0) {
+      await TeamMember.insertMany(initialTeam);
+      console.log(`[Seed] Inserted ${initialTeam.length} initial team members.`);
+    } else {
+      console.log(`[Seed] Preserved ${teamCount} existing admin-managed team members.`);
     }
 
     console.log('[Seed] Database seeding completed successfully!');
