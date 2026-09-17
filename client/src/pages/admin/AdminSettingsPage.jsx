@@ -215,11 +215,36 @@ export default function AdminSettingsPage() {
             </div>
 
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">WhatsApp / Phone</label>
+              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Official Phone</label>
               <input
                 type="text"
                 value={settings.phone || ''}
+                placeholder="+966 51 126 9264"
                 onChange={(e) => setSettings({ ...settings, phone: e.target.value })}
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+              />
+            </div>
+
+            <div>
+              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+                Official WhatsApp (Controls Floating WhatsApp Button & Links)
+              </label>
+              <input
+                type="text"
+                value={settings.whatsapp || ''}
+                placeholder="+966 51 126 9264 or https://wa.me/966511269264"
+                onChange={(e) => setSettings({ ...settings, whatsapp: e.target.value })}
+                className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
+              />
+            </div>
+
+            <div>
+              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">Official Telegram</label>
+              <input
+                type="text"
+                value={settings.telegram || ''}
+                placeholder="https://t.me/fiaustech"
+                onChange={(e) => setSettings({ ...settings, telegram: e.target.value })}
                 className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-850"
               />
             </div>

@@ -8,6 +8,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import AdminLayout from './components/layout/AdminLayout';
 import StartProjectModal from './components/common/StartProjectModal';
+import FloatingWhatsApp from './components/common/FloatingWhatsApp';
 
 // Public Pages
 import HomePage from './pages/HomePage';
@@ -155,6 +156,9 @@ export default function App() {
 
       {/* Public Footer (Hidden on Admin Routes) */}
       {!isAdminRoute && <Footer />}
+
+      {/* Floating WhatsApp Contact Button (Public Routes Only) */}
+      {!isAdminRoute && <FloatingWhatsApp />}
 
       {/* Global Start a Project Modal */}
       <StartProjectModal
