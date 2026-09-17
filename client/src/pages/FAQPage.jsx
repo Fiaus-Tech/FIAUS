@@ -73,17 +73,21 @@ export default function FAQPage({ onOpenStartProject }) {
   const [openIndex, setOpenIndex] = useState(0);
 
   useEffect(() => {
+    let isMounted = true;
     const loadFAQs = async () => {
       try {
         const res = await fetchFAQs();
-        if (res.success && res.data && res.data.length > 0) {
+        if (isMounted && res.success && Array.isArray(res.data)) {
           setFaqs(res.data);
         }
       } catch (e) {
-        console.error('Failed to fetch FAQs, using starter content', e);
+        console.error('Failed to fetch FAQs', e);
       }
     };
     loadFAQs();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const filteredFAQs = faqs.filter((faq) => {

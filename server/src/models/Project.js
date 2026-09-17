@@ -35,21 +35,20 @@ const projectSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: [
-        'Web Engineering',
-        'Full-Stack & Cloud',
-        'AI & Intelligent Automation',
-        'Cybersecurity & Tools',
-        'E-Commerce & Retail',
-        'Brand Experience & Hospitality'
-      ]
+      trim: true
     },
     categoryAr: {
-      type: String
+      type: String,
+      trim: true
     },
     projectType: {
       type: String,
-      default: 'Production Web Application'
+      default: 'Production Web Application',
+      trim: true
+    },
+    projectTypeAr: {
+      type: String,
+      trim: true
     },
     technologies: [
       {
@@ -87,8 +86,24 @@ const projectSchema = new mongoose.Schema(
     },
     screenshots: [
       {
-        title: String,
-        url: String
+        title: { type: String, default: '' },
+        titleAr: { type: String, default: '' },
+        caption: { type: String, default: '' },
+        captionAr: { type: String, default: '' },
+        url: { type: String, required: true },
+        order: { type: Number, default: 0 },
+        public_id: { type: String, default: '' }
+      }
+    ],
+    gallery: [
+      {
+        title: { type: String, default: '' },
+        titleAr: { type: String, default: '' },
+        caption: { type: String, default: '' },
+        captionAr: { type: String, default: '' },
+        url: { type: String, required: true },
+        order: { type: Number, default: 0 },
+        public_id: { type: String, default: '' }
       }
     ],
     githubUrl: {

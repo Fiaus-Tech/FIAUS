@@ -149,17 +149,21 @@ export default function ServicesSection({ onOpenStartProject }) {
   const [activeCategory, setActiveCategory] = useState('All');
 
   useEffect(() => {
+    let isMounted = true;
     const loadServices = async () => {
       try {
         const res = await fetchServices();
-        if (res.success && res.data && res.data.length > 0) {
+        if (isMounted && res.success && Array.isArray(res.data)) {
           setServices(res.data);
         }
       } catch (e) {
-        console.error('Failed to load services, using fallback', e);
+        console.error('Failed to load services', e);
       }
     };
     loadServices();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const categories = [

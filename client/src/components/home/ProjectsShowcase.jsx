@@ -148,7 +148,7 @@ const fallbackProjects = [
 ];
 
 export default function ProjectsShowcase() {
-  const [projects, setProjects] = useState(fallbackProjects);
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedProject, setSelectedProject] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
@@ -156,19 +156,23 @@ export default function ProjectsShowcase() {
   const { t, isRTL, language } = useLanguage();
 
   useEffect(() => {
+    let isMounted = true;
     const loadProjects = async () => {
       try {
         const res = await fetchProjects();
-        if (res.success && res.data && res.data.length > 0) {
+        if (isMounted && res.success && Array.isArray(res.data)) {
           setProjects(res.data);
         }
       } catch (err) {
-        console.error('Failed to load projects from API, using fallback data', err);
+        console.error('Failed to load projects from API', err);
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
     loadProjects();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const openGallery = (project, index = 0) => {
@@ -212,6 +216,8 @@ export default function ProjectsShowcase() {
               language === 'ar' && project.titleAr ? project.titleAr : project.title;
             const localizedCategory =
               language === 'ar' && project.categoryAr ? project.categoryAr : project.category;
+            const localizedProjectType =
+              language === 'ar' && project.projectTypeAr ? project.projectTypeAr : project.projectType;
             const localizedShortDesc =
               language === 'ar' && project.shortDescriptionAr
                 ? project.shortDescriptionAr
@@ -220,6 +226,13 @@ export default function ProjectsShowcase() {
               language === 'ar' && project.featuresAr && project.featuresAr.length > 0
                 ? project.featuresAr
                 : project.features || [];
+
+            const screenshots =
+              project.screenshots && project.screenshots.length > 0
+                ? project.screenshots
+                : project.gallery && project.gallery.length > 0
+                ? project.gallery
+                : [];
 
             return (
               <div
@@ -245,7 +258,7 @@ export default function ProjectsShowcase() {
                       >
                         <img
                           src={project.coverImage}
-                          alt={project.title}
+                          alt={localizedTitle}
                           className="w-full h-full object-cover object-top transform group-hover/img:scale-105 transition-transform duration-500"
                           loading="lazy"
                         />
@@ -260,30 +273,33 @@ export default function ProjectsShowcase() {
                       </div>
 
                       {/* Mini Thumbnail bar below main image */}
-                      {project.screenshots && project.screenshots.length > 1 && (
+                      {screenshots.length > 1 && (
                         <div className="px-4 py-3 bg-white/95 dark:bg-navy-900/95 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between gap-2 overflow-x-auto">
                           <div className="flex items-center gap-2">
-                            {project.screenshots.slice(0, 4).map((shot, sIdx) => (
-                              <button
-                                key={sIdx}
-                                onClick={() => openGallery(project, sIdx)}
-                                className="w-12 h-8 rounded-md overflow-hidden border border-slate-300 dark:border-slate-700 opacity-80 hover:opacity-100 hover:border-brand-500 transition-all shrink-0"
-                                title={shot.title}
-                              >
-                                <img
-                                  src={shot.url}
-                                  alt={shot.title}
-                                  className="w-full h-full object-cover"
-                                />
-                              </button>
-                            ))}
+                            {screenshots.slice(0, 4).map((shot, sIdx) => {
+                              const shotTitle = language === 'ar' && shot.titleAr ? shot.titleAr : (shot.title || localizedTitle);
+                              return (
+                                <button
+                                  key={sIdx}
+                                  onClick={() => openGallery(project, sIdx)}
+                                  className="w-12 h-8 rounded-md overflow-hidden border border-slate-300 dark:border-slate-700 opacity-80 hover:opacity-100 hover:border-brand-500 transition-all shrink-0"
+                                  title={shotTitle}
+                                >
+                                  <img
+                                    src={shot.url}
+                                    alt={shotTitle}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </button>
+                              );
+                            })}
                           </div>
 
                           <button
                             onClick={() => openGallery(project, 0)}
                             className="text-xs font-semibold text-brand-600 dark:text-brand-400 hover:underline flex items-center gap-1 shrink-0"
                           >
-                            <span>{project.screenshots.length} {language === 'ar' ? 'لقطات' : 'Screenshots'}</span>
+                            <span>{screenshots.length} {language === 'ar' ? 'لقطات' : 'Screenshots'}</span>
                             <Images className="w-3.5 h-3.5" />
                           </button>
                         </div>
@@ -313,9 +329,11 @@ export default function ProjectsShowcase() {
                     </h3>
 
                     {/* Project Type sub-label */}
-                    <p className="text-xs uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">
-                      {project.projectType}
-                    </p>
+                    {localizedProjectType && (
+                      <p className="text-xs uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">
+                        {localizedProjectType}
+                      </p>
+                    )}
 
                     {/* Short Description */}
                     <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-normal">

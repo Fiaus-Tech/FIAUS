@@ -44,14 +44,25 @@ export const getProjectBySlug = async (req, res, next) => {
   }
 };
 
+const normalizeProjectData = (data) => {
+  const result = { ...data };
+  if (result.gallery && (!result.screenshots || result.screenshots.length === 0)) {
+    result.screenshots = result.gallery;
+  } else if (result.screenshots && (!result.gallery || result.gallery.length === 0)) {
+    result.gallery = result.screenshots;
+  }
+  return result;
+};
+
 export const createProject = async (req, res, next) => {
   try {
+    const rawData = normalizeProjectData(req.body);
     if (isMongoConnected()) {
       const highestOrderProject = await Project.findOne().sort({ displayOrder: -1 });
       const nextOrder = highestOrderProject ? highestOrderProject.displayOrder + 1 : 1;
       const projectData = {
-        ...req.body,
-        displayOrder: req.body.displayOrder !== undefined ? req.body.displayOrder : nextOrder
+        ...rawData,
+        displayOrder: rawData.displayOrder !== undefined ? rawData.displayOrder : nextOrder
       };
       const project = await Project.create(projectData);
       return res.status(201).json({ success: true, data: project });
@@ -60,8 +71,8 @@ export const createProject = async (req, res, next) => {
     const projects = store.getProjects();
     const newProject = {
       _id: 'proj_' + Date.now(),
-      ...req.body,
-      displayOrder: req.body.displayOrder || projects.length + 1,
+      ...rawData,
+      displayOrder: rawData.displayOrder || projects.length + 1,
       createdAt: new Date().toISOString()
     };
     projects.push(newProject);
@@ -75,10 +86,11 @@ export const createProject = async (req, res, next) => {
 export const updateProject = async (req, res, next) => {
   try {
     const { id } = req.params;
+    const updateData = normalizeProjectData(req.body);
     if (isMongoConnected()) {
       const isObjectId = mongoose.Types.ObjectId.isValid(id);
       const query = isObjectId ? { _id: id } : { slug: id };
-      const project = await Project.findOneAndUpdate(query, { $set: req.body }, { new: true, runValidators: true });
+      const project = await Project.findOneAndUpdate(query, { $set: updateData }, { new: true, runValidators: true });
       if (!project) return res.status(404).json({ success: false, message: 'Project not found.' });
       return res.status(200).json({ success: true, data: project });
     }
@@ -86,7 +98,7 @@ export const updateProject = async (req, res, next) => {
     const projects = store.getProjects();
     const index = projects.findIndex((p) => p._id === id || p.slug === id);
     if (index === -1) return res.status(404).json({ success: false, message: 'Project not found.' });
-    projects[index] = { ...projects[index], ...req.body, updatedAt: new Date().toISOString() };
+    projects[index] = { ...projects[index], ...updateData, updatedAt: new Date().toISOString() };
     store.saveProjects(projects);
     res.status(200).json({ success: true, data: projects[index] });
   } catch (error) {

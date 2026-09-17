@@ -101,6 +101,17 @@ export const uploadFile = (file, folder = 'team') => {
   });
 };
 
+export const uploadFiles = (files, folder = 'projects') => {
+  const formData = new FormData();
+  Array.from(files).forEach((file) => {
+    formData.append('files', file);
+  });
+  formData.append('folder', folder);
+  return api.post('/upload/multiple', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' }
+  });
+};
+
 export const deleteUploadedFile = (public_id) => api.delete('/upload/delete', { data: { public_id } });
 
 export default api;

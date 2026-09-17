@@ -537,20 +537,32 @@ export const seedDatabase = async () => {
       console.log(`[Seed] Admin account ${defaultEmail} already exists.`);
     }
 
-    // 2. Seed Projects
-    await Project.deleteMany({});
-    await Project.insertMany(realProjects);
-    console.log(`[Seed] Inserted ${realProjects.length} real projects into database.`);
+    // 2. Seed Projects (Non-destructive: only insert if empty to preserve admin updates)
+    const projectCount = await Project.countDocuments();
+    if (projectCount === 0) {
+      await Project.insertMany(realProjects);
+      console.log(`[Seed] Inserted ${realProjects.length} real projects into database.`);
+    } else {
+      console.log(`[Seed] Preserved ${projectCount} existing admin-managed projects.`);
+    }
 
-    // 3. Seed Services
-    await Service.deleteMany({});
-    await Service.insertMany(realServices);
-    console.log(`[Seed] Inserted ${realServices.length} agency services.`);
+    // 3. Seed Services (Non-destructive: only insert if empty to preserve admin updates)
+    const serviceCount = await Service.countDocuments();
+    if (serviceCount === 0) {
+      await Service.insertMany(realServices);
+      console.log(`[Seed] Inserted ${realServices.length} agency services.`);
+    } else {
+      console.log(`[Seed] Preserved ${serviceCount} existing admin-managed services.`);
+    }
 
-    // 4. Seed FAQs
-    await FAQ.deleteMany({});
-    await FAQ.insertMany(initialFAQs);
-    console.log(`[Seed] Inserted ${initialFAQs.length} FAQs.`);
+    // 4. Seed FAQs (Non-destructive: only insert if empty to preserve admin updates)
+    const faqCount = await FAQ.countDocuments();
+    if (faqCount === 0) {
+      await FAQ.insertMany(initialFAQs);
+      console.log(`[Seed] Inserted ${initialFAQs.length} FAQs.`);
+    } else {
+      console.log(`[Seed] Preserved ${faqCount} existing admin-managed FAQs.`);
+    }
 
     // 5. Seed Website Settings
     let settings = await WebsiteSettings.findOne();

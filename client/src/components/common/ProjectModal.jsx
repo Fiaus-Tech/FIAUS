@@ -23,11 +23,20 @@ export default function ProjectModal({ project, isOpen, onClose, initialIndex = 
 
   if (!isOpen || !project) return null;
 
-  const screenshots = project.screenshots && project.screenshots.length > 0
-    ? project.screenshots
-    : [{ title: project.title, url: project.coverImage }];
+  const screenshots =
+    project.screenshots && project.screenshots.length > 0
+      ? project.screenshots
+      : project.gallery && project.gallery.length > 0
+      ? project.gallery
+      : [{ title: project.title, titleAr: project.titleAr, url: project.coverImage }];
 
-  const currentScreenshot = screenshots[activeIndex] || screenshots[0];
+  const currentScreenshot = screenshots[activeIndex] || screenshots[0] || {};
+  const localizedProjectTitle = language === 'ar' && project.titleAr ? project.titleAr : project.title;
+  const localizedCategory = language === 'ar' && project.categoryAr ? project.categoryAr : project.category;
+  
+  const localizedShotTitle = language === 'ar' && currentScreenshot.titleAr
+    ? currentScreenshot.titleAr
+    : (currentScreenshot.title || (language === 'ar' && currentScreenshot.captionAr ? currentScreenshot.captionAr : currentScreenshot.caption) || localizedProjectTitle);
 
   const nextSlide = () => {
     setActiveIndex((prev) => (prev + 1) % screenshots.length);
@@ -43,11 +52,13 @@ export default function ProjectModal({ project, isOpen, onClose, initialIndex = 
         {/* Header Bar */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-navy-850/80">
           <div>
-            <span className="text-xs uppercase tracking-wider font-bold text-brand-600 dark:text-brand-400">
-              {project.category}
-            </span>
+            {localizedCategory && (
+              <span className="text-xs uppercase tracking-wider font-bold text-brand-600 dark:text-brand-400 block">
+                {localizedCategory}
+              </span>
+            )}
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-              {language === 'ar' && project.titleAr ? project.titleAr : project.title}
+              {localizedProjectTitle}
             </h3>
           </div>
 
@@ -59,7 +70,7 @@ export default function ProjectModal({ project, isOpen, onClose, initialIndex = 
                 rel="noopener noreferrer"
                 className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-brand-600 dark:text-brand-400 bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 rounded-lg hover:bg-brand-100 transition-colors"
               >
-                <span>Live Demo</span>
+                <span>{language === 'ar' ? 'معاينة حية' : 'Live Demo'}</span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             )}
@@ -75,11 +86,15 @@ export default function ProjectModal({ project, isOpen, onClose, initialIndex = 
 
         {/* Main Screenshot Display */}
         <div className="relative flex-1 bg-slate-900/90 flex items-center justify-center p-3 sm:p-6 overflow-hidden min-h-[320px] sm:min-h-[440px]">
-          <img
-            src={currentScreenshot.url}
-            alt={currentScreenshot.title || project.title}
-            className="max-h-[60vh] max-w-full object-contain rounded-lg shadow-lg border border-slate-800"
-          />
+          {currentScreenshot.url ? (
+            <img
+              src={currentScreenshot.url}
+              alt={localizedShotTitle}
+              className="max-h-[60vh] max-w-full object-contain rounded-lg shadow-lg border border-slate-800"
+            />
+          ) : (
+            <div className="text-slate-400 text-sm">No image available</div>
+          )}
 
           {/* Navigation Arrows */}
           {screenshots.length > 1 && (
@@ -105,7 +120,7 @@ export default function ProjectModal({ project, isOpen, onClose, initialIndex = 
           {/* Image Caption & Counter */}
           <div className="absolute bottom-4 inset-x-0 flex items-center justify-center px-4 pointer-events-none">
             <div className="px-4 py-1.5 rounded-full text-xs font-semibold bg-black/75 backdrop-blur-md text-white border border-white/10 shadow-lg">
-              {currentScreenshot.title} ({activeIndex + 1} / {screenshots.length})
+              {localizedShotTitle} ({activeIndex + 1} / {screenshots.length})
             </div>
           </div>
         </div>
@@ -113,23 +128,27 @@ export default function ProjectModal({ project, isOpen, onClose, initialIndex = 
         {/* Thumbnails Navigation Strip */}
         {screenshots.length > 1 && (
           <div className="p-3 bg-slate-50 dark:bg-navy-950 border-t border-slate-200 dark:border-slate-800 flex items-center gap-2.5 overflow-x-auto">
-            {screenshots.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className={`relative w-20 h-14 rounded-lg overflow-hidden shrink-0 border-2 transition-all ${
-                  activeIndex === idx
-                    ? 'border-brand-500 ring-2 ring-brand-500/40 scale-105'
-                    : 'border-transparent opacity-60 hover:opacity-100'
-                }`}
-              >
-                <img
-                  src={item.url}
-                  alt={item.title}
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            ))}
+            {screenshots.map((item, idx) => {
+              const itemTitle = language === 'ar' && item.titleAr ? item.titleAr : (item.title || `Shot ${idx + 1}`);
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`relative w-20 h-14 rounded-lg overflow-hidden shrink-0 border-2 transition-all ${
+                    activeIndex === idx
+                      ? 'border-brand-500 ring-2 ring-brand-500/40 scale-105'
+                      : 'border-transparent opacity-60 hover:opacity-100'
+                  }`}
+                  title={itemTitle}
+                >
+                  <img
+                    src={item.url}
+                    alt={itemTitle}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              );
+            })}
           </div>
         )}
       </div>

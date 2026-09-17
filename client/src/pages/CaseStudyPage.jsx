@@ -72,10 +72,12 @@ export default function CaseStudyPage({ onOpenStartProject }) {
     language === 'ar' && project.titleAr ? project.titleAr : project.title;
   const localizedCategory =
     language === 'ar' && project.categoryAr ? project.categoryAr : project.category;
+  const localizedProjectType =
+    language === 'ar' && project.projectTypeAr ? project.projectTypeAr : project.projectType;
   const localizedFullDesc =
     language === 'ar' && project.fullDescriptionAr
       ? project.fullDescriptionAr
-      : project.fullDescription;
+      : project.fullDescription || project.shortDescription;
   const localizedChallenge =
     language === 'ar' && project.challengeAr ? project.challengeAr : project.challenge;
   const localizedSolution =
@@ -84,6 +86,13 @@ export default function CaseStudyPage({ onOpenStartProject }) {
     language === 'ar' && project.featuresAr && project.featuresAr.length > 0
       ? project.featuresAr
       : project.features || [];
+
+  const screenshots =
+    project.screenshots && project.screenshots.length > 0
+      ? project.screenshots
+      : project.gallery && project.gallery.length > 0
+      ? project.gallery
+      : [];
 
   const openGallery = (idx = 0) => {
     setModalIndex(idx);
@@ -106,10 +115,17 @@ export default function CaseStudyPage({ onOpenStartProject }) {
 
         {/* Case Study Header */}
         <div className="max-w-4xl space-y-4 mb-12">
-          <div className="flex items-center gap-3">
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-50 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300">
-              {localizedCategory}
-            </span>
+          <div className="flex flex-wrap items-center gap-3">
+            {localizedCategory && (
+              <span className="px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-50 dark:bg-brand-950/80 border border-brand-200 dark:border-brand-800 text-brand-700 dark:text-brand-300">
+                {localizedCategory}
+              </span>
+            )}
+            {localizedProjectType && (
+              <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-slate-100 dark:bg-navy-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                {localizedProjectType}
+              </span>
+            )}
             <span className="text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 font-mono">
               PROJECT {String(project.displayOrder || 1).padStart(2, '0')}
             </span>
@@ -172,7 +188,7 @@ export default function CaseStudyPage({ onOpenStartProject }) {
           >
             <img
               src={project.coverImage}
-              alt={project.title}
+              alt={localizedTitle}
               className="w-full h-full object-cover object-top group-hover:scale-102 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -211,30 +227,33 @@ export default function CaseStudyPage({ onOpenStartProject }) {
             )}
 
             {/* Screenshots Strip Grid */}
-            {project.screenshots && project.screenshots.length > 0 && (
+            {screenshots.length > 0 && (
               <div className="space-y-4">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                   {language === 'ar' ? 'واجهات وشاشات النظام' : 'System Interfaces & Screenshots'}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {project.screenshots.map((shot, idx) => (
-                    <div
-                      key={idx}
-                      onClick={() => openGallery(idx)}
-                      className="cursor-pointer group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900 shadow-sm hover:shadow-md transition-all"
-                    >
-                      <div className="aspect-[16/10] overflow-hidden">
-                        <img
-                          src={shot.url}
-                          alt={shot.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
+                  {screenshots.map((shot, idx) => {
+                    const shotTitle = language === 'ar' && shot.titleAr ? shot.titleAr : (shot.title || (language === 'ar' && shot.captionAr ? shot.captionAr : shot.caption) || `${localizedTitle} - Shot ${idx + 1}`);
+                    return (
+                      <div
+                        key={idx}
+                        onClick={() => openGallery(idx)}
+                        className="cursor-pointer group rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-900 shadow-sm hover:shadow-md transition-all"
+                      >
+                        <div className="aspect-[16/10] overflow-hidden">
+                          <img
+                            src={shot.url}
+                            alt={shotTitle}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                        <div className="p-3 bg-white dark:bg-navy-850 border-t border-slate-100 dark:border-slate-800/60 text-xs font-semibold text-slate-700 dark:text-slate-300 truncate">
+                          {shotTitle}
+                        </div>
                       </div>
-                      <div className="p-3 bg-white dark:bg-navy-850 border-t border-slate-100 dark:border-slate-800/60 text-xs font-semibold text-slate-700 dark:text-slate-300 truncate">
-                        {shot.title}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
